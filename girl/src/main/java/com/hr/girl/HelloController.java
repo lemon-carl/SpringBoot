@@ -1,10 +1,4 @@
-package com.hr.girl;/**
- * packageName :com.hr.girl
- * Created with IDEA
- * author:CarlLing
- * Date:2018/5/2
- * Time:18:01
- */
+package com.hr.girl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @Name : HelloController
- * @Author :  LH
+ *
+ * @ClassName : HelloController
+ *  Created with IDEA
+ * @Author :  CarlLing
  * @CreateDate : 2018-05-02 18:01
  * @Description : 
  */
