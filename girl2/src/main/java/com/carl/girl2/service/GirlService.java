@@ -1,5 +1,7 @@
-package com.carl.girl2;
+package com.carl.girl2.service;
 
+import com.carl.girl2.entity.Girl;
+import com.carl.girl2.respository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

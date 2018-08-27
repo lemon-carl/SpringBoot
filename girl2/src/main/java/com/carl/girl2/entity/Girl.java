@@ -1,4 +1,4 @@
-package com.carl.girl2;
+package com.carl.girl2.entity;
 
 
 import javax.persistence.Entity;
