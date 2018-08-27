@@ -3,6 +3,8 @@ package com.carl.girl2.controller;
 import com.carl.girl2.entity.Girl;
 import com.carl.girl2.respository.GirlRepository;
 import com.carl.girl2.service.GirlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,8 @@ import java.util.List;
 @RestController
 public class GirlController {
 
+  private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
+
   @Autowired private GirlRepository girlRepository;
 
   @Autowired private GirlService girlService;
@@ -29,6 +33,7 @@ public class GirlController {
    */
   @GetMapping(value = "/girls")
   public List<Girl> girlList() {
+    logger.info("grilList");
     return girlRepository.findAll();
   }
 
