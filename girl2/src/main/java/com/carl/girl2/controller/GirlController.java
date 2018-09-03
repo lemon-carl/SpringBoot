@@ -46,7 +46,7 @@ public class GirlController {
    * @return
    */
   @PostMapping(value = "/girls")
-  public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
+  public /*  Girl*/ Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
     }
@@ -54,7 +54,8 @@ public class GirlController {
     girl.setCupSize(girl.getCupSize());
     girl.setAge(girl.getAge());
 
-    return ResultUtil.success(girl);
+    return ResultUtil.success(girlRepository.save(girl));
+    //  return girlRepository.save(girl);
   }
 
   /**
