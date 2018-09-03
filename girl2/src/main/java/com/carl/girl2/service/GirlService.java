@@ -35,13 +35,22 @@ public class GirlService {
     Girl girl = girlRepository.findOne(id);
     Integer age = girl.getAge();
     if (age < 10) {
-      // ·µ»ØÄã»¹ÔÚÉÏÐ¡Ñ§ code =100
+      // è¿”å›žä½ è¿˜åœ¨ä¸Šå°å­¦ code =100
       throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
     } else if (age > 10 && age < 16) {
-      // ·µ»Ø¿ÉÄÜÔÚÉÏ³õÖÐ code= 101
+      // è¿”å›žå¯èƒ½åœ¨ä¸Šåˆä¸­ code= 101
       throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
     }
 
-    // Èç¹û´óÓÚ16 £¬¼ÓÇ®
+    // å¦‚æžœå¤§äºŽ16 ï¼ŒåŠ é’±
+  }
+
+  /**
+   * é€šè¿‡idæŸ¥è¯¢ä¸€ä¸ªå¥³ç”Ÿçš„ä¿¡æ¯
+   * @param id
+   * @return
+   */
+  public Girl findOne(Integer id){
+  return girlRepository.findOne(id);
   }
 }
