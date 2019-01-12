@@ -1,0 +1,2 @@
+验证validate
+curl http://localhost:8080/test/validate.json
