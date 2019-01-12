@@ -8,6 +8,7 @@ package com.mmall.exception;
  * @Description :
  */
 public class ParamException extends RuntimeException {
+
     public ParamException() {
         super();
     }

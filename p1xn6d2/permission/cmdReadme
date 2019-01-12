@@ -1,2 +1,6 @@
 验证validate
 curl http://localhost:8080/test/validate.json
+
+
+JsonMapper 和 ApplicationContextHelper 工具类验证
+curl http://localhost:8080/test/validate.json?id=1&msg=carladmin

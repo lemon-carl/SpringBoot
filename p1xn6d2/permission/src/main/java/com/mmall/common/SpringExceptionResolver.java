@@ -38,7 +38,7 @@ public class SpringExceptionResolver implements HandlerExceptionResolver {
         JsonData result = JsonData.fail(defautMsg);
         modelAndView = new ModelAndView("jsonView", result.toMap());
       }
-    } else if (url.endsWith(".page")) { // 要求项目中所有的请求page数据，都使用.page结尾
+    } else if (url.endsWith(".page")) { // 要求项目中所有的请求page页面，都使用.page结尾
       log.error("unknow page exception, url: " + url, ex);
       JsonData result = JsonData.fail(defautMsg);
       modelAndView = new ModelAndView("exception", result.toMap());
