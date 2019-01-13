@@ -4,3 +4,7 @@ curl http://localhost:8080/test/validate.json
 
 JsonMapper 和 ApplicationContextHelper 工具类验证
 curl http://localhost:8080/test/validate.json?id=1&msg=carladmin
+
+Http请求前后监听工具 HtppInterceptor开发
+curl http://localhost:8080/test/validate.json\?id\=111\&msg\=carladmin
+curl http://localhost:8080/test/validate.json?id=8&msg=carladmin
