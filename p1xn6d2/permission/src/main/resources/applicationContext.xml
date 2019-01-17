@@ -7,14 +7,23 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <import resource="spring-servlet.xml"/>
+
+    <!-- spring bean 相关的配置-->
+    <!-- 其主要的原理在是,Spring容器初始化的时候，会读取 xml 或者 annotation 对 Bean 进行初始化。
+    初始化的时候，这个 PropertyPlaceholderConfigurer 会拦截 Bean 的初始化，初始化的时候会对配置的 ${pname} 进行替换，
+    根据我们 Properties 中配置的进行替换,从而实现表达式的替换操作 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:settings.properties</value>
+                <value>classpath:db.properties</value>
             </list>
         </property>
     </bean>
+
+    <!--redis的配置-->
+    <!--<import resource="redis.xml" />-->
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${db.driverClassName}"/>
@@ -39,11 +48,12 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-    <!-- tx -->
+    <!-- tx 事务配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
+    <!-- 启用事务注解 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--druid-->
@@ -52,6 +62,7 @@
         <property name="logSlowSql" value="true"/>
         <property name="mergeSql" value="true"/>
     </bean>
+
     <bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
         <property name="dbType" value="mysql"/>
     </bean>

@@ -18,6 +18,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <springframework.version>4.3.14.RELEASE</springframework.version>
+        <spring.jdbc>4.3.9.RELEASE</spring.jdbc>
     </properties>
 
     <dependencies>
@@ -28,12 +29,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!--*******************添加spring相关依赖*******************-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+
+        <!--spring IOC的基础实现，包含访问配置文件、创建和管理bean等-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+        <!--spring 上下文的依赖-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -41,34 +46,58 @@
         </dependency>
 
         <!--Spring MVC + Spring web-->
+        <!--web应用开发核心类（文件长传、Filter、大量工具辅助类）-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+        <!--spring mvc（Servlets Web mvc框架，控制器，视图-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+
+        <!--为JDBC、Hibernate、JDO、JPA等提供的一致的声明式和编程式事务管理-->
+  <!--      <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>-->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring.jdbc}</version>
         </dependency>
 
+        <!--***************************数据库***********************-->
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+
+        <!--mybatis关联spring-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>1.3.2</version>
         </dependency>
 
+        <!--数据源的管理-->
         <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -83,7 +112,15 @@
             <version>5.1.34</version>
         </dependency>
 
-        <!-- lombok 注解get、set、toString-->
+        <!--<dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.2</version>
+        </dependency>-->
+
+
+        <!--************************工具包******************************-->
+        <!-- lombok 注解get、set、toString 简化代码-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -96,6 +133,98 @@
             <artifactId>jackson-datatype-guava</artifactId>
             <version>2.9.7</version>
         </dependency>
+
+        <!-- tools -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
+        <!--commons-codec 是Apache开源组织提供的用于摘要运算、编码的包。在该包中主要分为四类加密：BinaryEncoders、DigestEncoders、LanguageEncoders、NetworkEncoders。-->
+        <!--public void testBase64()-->
+        <!--{-->
+        <!--System.out.println("==============Base64================");-->
+        <!--byte[] data = "jianggujin".getBytes();-->
+        <!--Base64 base64 = new Base64();-->
+        <!--String encode = base64.encodeAsString(data);-->
+        <!--System.out.println(encode);-->
+        <!--System.out.println(new String(base64.decode(encode)));-->
+        <!--}-->
+        <!---->
+        <!--public void testMD5()-->
+        <!--{-->
+        <!--System.out.println("==============MD5================");-->
+        <!--String result = DigestUtils.md5Hex("jianggujin");-->
+        <!--System.out.println(result);-->
+        <!--}-->
+        <!--public void testURLCodec() throws Exception-->
+        <!--{-->
+        <!--System.out.println("==============URLCodec================");-->
+        <!--URLCodec codec = new URLCodec();-->
+        <!--String data = "蒋固金";-->
+        <!--String encode = codec.encode(data, "UTF-8");-->
+        <!--System.out.println(encode);-->
+        <!--System.out.println(codec.decode(encode, "UTF-8"));-->
+        <!--}-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <!-- jackson -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+        <!--处理异常 jsp api-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>6.0.36</version>
+        </dependency>
+
+        <!--参数校验-->
+        <!--validation bean 是基于JSR-303标准开发出来的，使用注解方式实现，及其方便，但是这只是一个接口，没有具体实现-->
+        <!-- validator -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
+        </dependency>
+        <!--Hibernate Validator是一个hibernate独立的包，可以直接引用，他实现了validation bean同时有做了扩展，比较强大-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.3.6.Final</version>
+        </dependency>
+        <!-- email -->
+        <!--<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+        </dependency>-->
+
+
+        <!--**************************日志包*******************-->
+        <!--加入日志-->
+        <!--logback执行速度快，原生实现了slf4j的api-->
+        <!--logback 可以热加载，线上给配置，无需重启-->
+        <!--支持参数化输出-->
 
         <!-- logback -->
         <dependency>
@@ -114,58 +243,33 @@
             <version>1.7.22</version>
         </dependency>
 
-        <!-- jsp api-->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>6.0.36</version>
-        </dependency>
 
-        <!-- validator -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
-        </dependency>
-
-        <!-- tools -->
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-
-        <!-- jackson -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
 
     </dependencies>
 
     <build>
+        <!-- 产生的构件的文件名，默认值是${artifactId}-${version}-->
         <finalName>permission</finalName>
+        <!--<plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>-->
     </build>
 </project>

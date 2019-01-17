@@ -9,19 +9,19 @@ import java.util.Map;
 /**
  * @ClassName : JsonData Created with IDEA
  *
- * @author:CarlLing @CreateDate : 2019-01-11 23:21 @Description :json返回信息
+ * @author:CarlLing @CreateDate : 2019-01-11 23:21 @Description :请求返回格式
  */
 @Getter
 @Setter
 public class JsonData {
 
-  // 返回结果
+  // 返回数据
   private boolean ret;
 
-  // 有异常返回msg，通知出现什么错误
+  // 返回信息提示
   private String msg;
 
-  // 正常返回给前台的数据
+  // 正常返回数据
   private Object data;
 
   public JsonData(boolean ret) {
@@ -48,7 +48,6 @@ public class JsonData {
   public static JsonData fail(String msg) {
     JsonData jsonData = new JsonData(false);
     jsonData.msg = msg;
-
     return jsonData;
   }
 

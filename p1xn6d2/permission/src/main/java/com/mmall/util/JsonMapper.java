@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
  * @ClassName : JsonMapper Created with IDEA
  *
  * @author:CarlLing @CreateDate : 2019-01-12 21:38 @Description : Json转换工具
+ * java对象和json相互转化
  */
 @Slf4j
 public class JsonMapper {

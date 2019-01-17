@@ -36,9 +36,8 @@ public class TestController {
   public JsonData hello() {
     log.info("----------------hello---------------");
     // return "hello, permission!";
-    throw new PermissionException("test exception");
-    // throw new RuntimeException("run exception");
-    // return  JsonData.success("hello , permission");
+    //throw new PermissionException("test exception");
+     return  JsonData.success("hello , permission");
   }
 
   @RequestMapping("/validate.json")

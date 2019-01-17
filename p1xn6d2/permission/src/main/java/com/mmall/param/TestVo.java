@@ -24,9 +24,9 @@ public class TestVo {
     @NotBlank
     private String msg;
 
-    @NotNull(message = "id不能为空")
-    @Max(value = 10, message = "id 不能大于 10")
-    @Min(value = 0, message = "id 至少大于等于0")
+    @NotNull(message = "id涓嶈兘涓虹┖")
+    @Max(value = 10, message = "id 涓嶈兘澶т簬 10")
+    @Min(value = 0, message = "id 鑷冲皯澶т簬绛変簬0")
     private Integer id;
 
     //@NotEmpty

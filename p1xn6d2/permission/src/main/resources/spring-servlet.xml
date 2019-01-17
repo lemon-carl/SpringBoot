@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 与请求相关的配置-->
+    <!-- spring是 <servlet-name>spring</servlet-name> 的名称加上固定的猴后缀 -servlet.xml 形成的名称-->
+
+    <!-- 作用是向 Spring 容器注册 这 4 个BeanPostProcessor-->
+    <!-- AutowiredAnnotationBeanPostProcessor：
+            @Autowired注解，那么就必须事先在 Spring 容器中声明 AutowiredAnnotationBeanPostProcessor Bean
+         CommonAnnotationBeanPostProcessor：
+            @ Resource 、@ PostConstruct、@ PreDestroy等注解就必须声明CommonAnnotationBeanPostProcessor
+         PersistenceAnnotationBeanPostProcessor：
+            @PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor
+         RequiredAnnotationBeanPostProcessor：
+            @Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean-->
+    <!-- 上下文相关的注解会被spring自动的管理-->
+    <context:annotation-config/>
+
+    <!-- 启动包扫描功能 :mvc:annotation-driven对那些路径是有效的 -->
+    <!-- dao层mybatis处理-->
+    <context:component-scan base-package="com.mmall.controller"/>
+    <context:component-scan base-package="com.mmall.service"/>
+
+    <!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean-->
+    <!-- 是spring MVC为@Controllers分发请求所必须的，即解决了@Controller注解使用的前提配置。-->
+    <!-- 启动注解驱动的 spring MVC 功能 ,成为spring自动管理的bean -->
+    <mvc:annotation-driven/>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <bean class="com.mmall.common.HttpInterceptor"/>
+    </mvc:interceptors>
+
+    <!--静态资源文件-->
+    <!--<mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/bootstrap3.3.5/" mapping="/bootstrap3.3.5/**"/>
+    <mvc:resources location="/assets/" mapping="/assets/**"/>
+    <mvc:resources location="/ztree/" mapping="/ztree/**"/>-->
+
+    <!--注入获取bean的类-->
+    <bean class="com.mmall.common.ApplicationContextHelper" lazy-init="false"/>
+
+    <!--定义一个spring mvc的接口的时候，会使用@requestmapping ，把这个注解找到对应的接口 -->
+   <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
+
+    <!--全局异常注入-->
+    <bean class="com.mmall.common.SpringExceptionResolver"/>
+
+    <!-- 视图解析器 :告诉返回的格式-->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+
+    <!--额外的配置 ，json处理、jsp页面处理-->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    
+</beans>
