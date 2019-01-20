@@ -10,6 +10,25 @@ curl http://localhost:8080/test/validate.json?id=111&msg=carladmin
 curl http://localhost:8080/test/validate.json?id=8&msg=carladmin
 
 7-4 新增部门、部门层级树、更新部门接口自测
-curl http://localhost:8080/sys/dept/save.json?name=财务部&seq=3&remark=财务部门
+http://localhost:8080/sys/dept/save.json?name=财务部&seq=3&remark=财务部门
 http://localhost:8080/sys/dept/save.json?name=行政部&seq=3&remark=行政部门
 http://localhost:8080/sys/dept/save.json?name=财务一组&seq=1&remark=财务部门
+http://localhost:8080/sys/dept/save.json?name=财务二组&seq=2&remark=财务部门
+
+http://http://localhost:8080/sys/dept/tree.json
+
+http://localhost:8080/sys/dept/update.json?id=2&name=后端开发&seq=1&parentId=1&remark=后端项目组
+
+http://localhost:8080/sys/dept/update.json?id=3&name=前端开发&seq=2&parentId=1&remark=前端项目组
+
+8.3 新增用户接口开发
+http://localhost:8080/sys/user/save.json?username=carl&telephone=15074756633&mail=carl@qq.com&deptId=1&status=1
+
+http://localhost:8080/sys/user/update.json?username=Carlk&telephone=18376642114&mail=carl@qq.com&deptId=1&status=1&remark=carl&id=6
+
+8.5 用户登录接口和页面开发
+<!--<%@ page import="com.mmall.common.RequestHolder" %> -->
+<!--<%@ page import="com.mmall.model.SysUser" %>-->
+
+
+http://localhost:8080/signin.jsp

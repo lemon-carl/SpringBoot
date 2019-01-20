@@ -9,6 +9,8 @@ import com.mmall.model.SysDept;
 import com.mmall.service.SysTreeService;
 import com.mmall.util.LevelUtil;
 import org.apache.commons.collections.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,6 +27,8 @@ import java.util.List;
  */
 @Service
 public class SysTreeServiceImpl implements SysTreeService{
+
+    protected static final Logger log = LoggerFactory.getLogger(SysTreeServiceImpl.class);
 
     @Resource
     private SysDeptMapper sysDeptMapper;
@@ -102,15 +106,17 @@ public class SysTreeServiceImpl implements SysTreeService{
      * @param levelDeptMap map所有的
      */
     private void transformDeptTree(List<DeptLevelDto> deptLevelList, String level, Multimap<String, DeptLevelDto> levelDeptMap) {
+
         //遍历当前层级数据，获取当前节点的下一层节点
         for (int i = 0; i < deptLevelList.size(); i++){
             // 遍历该层的每个元素
             DeptLevelDto deptLevelDto = deptLevelList.get(i);
+            log.info("deptLevelDto: " + deptLevelDto.getLevel()+ "--" + deptLevelDto.getName());
             // 处理当前层级的数据
             String nextLevel = LevelUtil.calculateLevel(level, deptLevelDto.getId());
             // 处理下一层
             List<DeptLevelDto> tempDeptList = (List <DeptLevelDto>) levelDeptMap.get(nextLevel);
-            if (CollectionUtils.isEmpty(tempDeptList)){
+            if (CollectionUtils.isNotEmpty(tempDeptList)){
                 //排序
                 Collections.sort(tempDeptList, deptSeqComparator);
                 //设置下一层部门

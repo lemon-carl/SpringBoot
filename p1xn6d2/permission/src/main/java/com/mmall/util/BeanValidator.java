@@ -41,7 +41,6 @@ public class BeanValidator {
     Set validatorResult = validator.validate(t, groups);
     //不为空，既校验出错
     if (validatorResult.isEmpty()) {
-        log.info("collections.emptyMap=====" + Collections.emptyMap());
         return Collections.emptyMap();
     } else {
         LinkedHashMap errors = Maps.newLinkedHashMap();
@@ -112,9 +111,7 @@ public class BeanValidator {
    * @throws ParamException 参数校验异常
    */
   public static void check(Object param) throws ParamException {
-    log.info("check......");
     Map<String, String> map = BeanValidator.validateObject(param);
-    log.info("map:" + map.toString());
     // if(map != null && map.entrySet().size() > 0 ){
     //maven commons-collections
     if (!MapUtils.isEmpty(map)) {

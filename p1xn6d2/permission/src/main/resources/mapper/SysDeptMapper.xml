@@ -145,11 +145,12 @@
     from sys_dept
   </select>
 
+  <!-- level like '0.1.%'-->
   <select id="getChildDeptListByLevel" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_dept
-    WHERE level like #{level} || '.%' -- level like '0.1.%'
+    WHERE level like #{level} || '.%'
   </select>
 
   <update id="batchUpdateLevel" parameterType="map">
@@ -170,6 +171,12 @@
     <if test="id != null">
       AND id != #{id}
     </if>
+  </select>
+
+  <select id="countByParentId" parameterType="int" resultType="int">
+    SELECT count(1)
+    FROM sys_dept
+    WHERE parent_id = #{deptId}
   </select>
 
 </mapper>

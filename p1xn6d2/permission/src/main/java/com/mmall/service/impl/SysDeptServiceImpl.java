@@ -24,7 +24,7 @@ import java.util.List;
  * Created with IDEA
  * @author:CarlLing
  * @CreateDate : 2019-01-13 17:54
- * @Description : 部门业务处理
+ * @Description : 部门业务逻辑
  */
 @Service
 public class SysDeptServiceImpl implements SysDeptService{
@@ -45,12 +45,12 @@ public class SysDeptServiceImpl implements SysDeptService{
         }
         //建造者的方式使用
         SysDept dept = SysDept.builder().name(param.getName())
-                                        .parentId(13)
+                                        .parentId(param.getParentId())
                                         .seq(param.getSeq())
                                         .remark(param.getRemark())
                                         .build();
-        //dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()));
-        dept.setLevel(LevelUtil.calculateLevel(getLevel(13),13));
+        //dept.setLevel(LevelUtil.calculateLevel(getLevel(13),13));
+        dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()));
 
         dept.setOperator("system");//TODO:
         dept.setOperateIp("127.0.0.1");//TODO:
@@ -81,18 +81,19 @@ public class SysDeptServiceImpl implements SysDeptService{
     }
 
 
-    /*@Override
-    public void delete(int deptId) {
+    @Override
+    public void delete(Integer deptId) {
         SysDept dept = sysDeptMapper.selectByPrimaryKey(deptId);
         Preconditions.checkNotNull(dept, "待删除的部门不存在，无法删除");
         if (sysDeptMapper.countByParentId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有子部门，无法删除");
         }
-        if(sysUserMapper.countByDeptId(dept.getId()) > 0) {
+       /* if(sysUserMapper.countByDeptId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有用户，无法删除");
-        }
+        }*/
+        log.info("部门： " +dept.getName() + "，层级:" +dept.getLevel() + ",id:" + dept.getId() +"，父级："+ dept.getParentId());
         sysDeptMapper.deleteByPrimaryKey(deptId);
-    }*/
+    }
 
 
     /**
@@ -102,6 +103,7 @@ public class SysDeptServiceImpl implements SysDeptService{
      */
     @Transactional
      void updateWithChild(SysDept before,SysDept after){
+        log.info("before" + before +" : " +after);
         String newLevelPrefix = after.getLevel();
         String oldLevelPrefix = before.getLevel();
         //只有不一致的时候才做子部门的更新

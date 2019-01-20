@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,18 +24,18 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/sys/dept")
-@Slf4j
 public class SysDeptController {
 
   protected  static final Logger log = LoggerFactory.getLogger(SysDeptController.class);
 
   @Resource private SysDeptService sysDeptService;
+
   @Resource private SysTreeServiceImpl sysTreeService;
 
-  /*@RequestMapping("dept.page")
+  @RequestMapping("dept.page")
   public ModelAndView page(){
     return new ModelAndView("dept");
-  }*/
+  }
 
   /**
    * 新增部门功能
@@ -72,7 +74,7 @@ public class SysDeptController {
 
   /**
    * 删除部门
-   * @param id
+   * @param deptId
    * @return
    */
  /* @RequestMapping("/delete.json")

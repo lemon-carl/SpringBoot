@@ -1,0 +1,20 @@
+package com.mmall.service;
+
+import com.mmall.model.SysUser;
+import com.mmall.param.UserParam;
+
+/**
+ * @InterFaceName : SysUserService
+ * Created with IDEA
+ * @author:CarlLing
+ * @CreateDate : 2019-01-20 21:40
+ * @Description :
+ */
+public interface SysUserService {
+
+    void save(UserParam param);
+
+    void update(UserParam param);
+
+    SysUser findByKeyword(String keyword);
+}

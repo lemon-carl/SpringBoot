@@ -18,17 +18,18 @@ public interface SysDeptMapper {
 
     int updateByPrimaryKey(SysDept record);
 
-    // ²¿ÃÅÁĞ±í
+    // éƒ¨é—¨åˆ—è¡¨
     List<SysDept> getAllDept();
 
-    //»ñÈ¡ËùÓĞÒÔx¿ªÍ·µÄËùÓĞ²¿ÃÅ xx .%
+    //è·å–æ‰€æœ‰ä»¥xå¼€å¤´çš„æ‰€æœ‰éƒ¨é—¨ xx .%
     List<SysDept> getChildDeptListByLevel(@Param("level") String level);
 
-    //ÅúÁ¿¸üĞÂËùÓĞµÄ×Ó²¿ÃÅ
+    //æ‰¹é‡æ›´æ–°æ‰€æœ‰çš„å­éƒ¨é—¨
     void  batchUpdateLevel(@Param("sysDeptList") List<SysDept> sysDeptList);
 
-    //¼ì²éÊı¾İÊÇ·ñÓĞÖØ¸´
+    //æ£€æŸ¥æ•°æ®æ˜¯å¦æœ‰é‡å¤
     int countByNameAndParentId(@Param("parentId") Integer parentId, @Param("name") String name, @Param("id") Integer id);
 
+    int countByParentId(@Param("deptId") Integer deptId);
 
 }
