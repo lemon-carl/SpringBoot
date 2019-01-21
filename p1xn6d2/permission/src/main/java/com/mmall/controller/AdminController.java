@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created with IDEA
  * @author:CarlLing
  * @CreateDate : 2019-01-20 22:37
- * @Description :  登录成功跳转
+ * @Description :  登录成功跳转 index.jsp
  */
 @Controller
 @RequestMapping("/admin")

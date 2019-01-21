@@ -213,11 +213,11 @@
             <version>5.3.6.Final</version>
         </dependency>
         <!-- email -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>
             <version>1.4</version>
-        </dependency>-->
+        </dependency>
 
 
         <!--**************************日志包*******************-->

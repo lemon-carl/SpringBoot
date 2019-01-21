@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-<h2>Hello World! GO HOME GO GO GO </h2>
+<h2>Hello World! GO HOME GO GO GO 这是权限管理入口</h2>
 </body>
 </html>

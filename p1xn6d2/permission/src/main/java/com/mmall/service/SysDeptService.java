@@ -22,6 +22,6 @@ public interface SysDeptService {
      * 删除部门
      * @param id
      */
-    //void delete(int id);
+    void delete(int id);
 
 }

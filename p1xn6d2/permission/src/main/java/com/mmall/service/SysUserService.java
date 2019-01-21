@@ -1,5 +1,7 @@
 package com.mmall.service;
 
+import com.mmall.beans.PageQuery;
+import com.mmall.controller.PageResult;
 import com.mmall.model.SysUser;
 import com.mmall.param.UserParam;
 
@@ -17,4 +19,6 @@ public interface SysUserService {
     void update(UserParam param);
 
     SysUser findByKeyword(String keyword);
+
+    PageResult<SysUser> getPageByDeptId(int deptId, PageQuery page);
 }

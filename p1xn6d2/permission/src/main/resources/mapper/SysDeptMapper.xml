@@ -173,10 +173,10 @@
     </if>
   </select>
 
-  <select id="countByParentId" parameterType="int" resultType="int">
+  <select id="countByParentId" parameterType="java.lang.Integer" resultType="int">
     SELECT count(1)
     FROM sys_dept
-    WHERE parent_id = #{deptId}
+    WHERE parent_id = #{deptId,jdbcType=INTEGER}
   </select>
 
 </mapper>

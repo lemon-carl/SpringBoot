@@ -1,3 +1,6 @@
+控制台 Tomcat 中文乱码
+-Dfile.encoding=UTF-8
+
 验证validate
 curl http://localhost:8080/test/validate.json
 
@@ -31,4 +34,8 @@ http://localhost:8080/sys/user/update.json?username=Carlk&telephone=18376642114&
 <!--<%@ page import="com.mmall.model.SysUser" %>-->
 
 
+登录接口的jsp需要与index.jsp 同级别
+
 http://localhost:8080/signin.jsp
+
+http://localhost:8080/admin/index.page

@@ -74,14 +74,14 @@ public class SysDeptController {
 
   /**
    * 删除部门
-   * @param deptId
+   * @param id
    * @return
    */
- /* @RequestMapping("/delete.json")
+  @RequestMapping("/delete.json")
   @ResponseBody
   public JsonData delete(@RequestParam("id") int id) {
     sysDeptService.delete(id);
     return JsonData.success();
-  }*/
+  }
 
 }
