@@ -86,7 +86,6 @@ public class SysDeptServiceImpl implements SysDeptService{
         updateWithChild(before,after);
     }
 
-
     @Override
     public void delete(int deptId) {
         SysDept dept = sysDeptMapper.selectByPrimaryKey(deptId);
