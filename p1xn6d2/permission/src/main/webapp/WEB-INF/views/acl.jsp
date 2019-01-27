@@ -285,6 +285,7 @@
                 }
             });
         });
+
         function updateAclModule(isCreate, successCallback, failCallback) {
             $.ajax({
                 url: isCreate ? "/sys/aclModule/save.json" : "/sys/aclModule/update.json",
@@ -457,6 +458,7 @@
                 lastAclModule.removeClass("btn-yellow");
                 lastAclModule.removeClass("no-hover");
             }
+            //添加当前的选中样式
             var currentAclModule = $("#aclModule_" + aclModuleId + " .dd2-content:first");
             currentAclModule.addClass("btn-yellow");
             currentAclModule.addClass("no-hover");
@@ -465,6 +467,7 @@
         }
 
         function loadAclList(aclModuleId) {
+            console.log("loadAclList, id: " + aclModuleId);
             var pageSize = $("#pageSize").val();
             var url = "/sys/acl/page.json?aclModuleId=" + aclModuleId;
             var pageNo = $("#aclPage .pageNo").val() || 1;
@@ -542,6 +545,7 @@
                     }
                 })
             });
+
             $(".acl-edit").click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();

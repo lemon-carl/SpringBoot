@@ -1,0 +1,45 @@
+package com.mmall.service;
+
+import com.mmall.beans.PageQuery;
+import com.mmall.controller.PageResult;
+import com.mmall.model.SysAcl;
+import com.mmall.param.AclParam;
+
+import java.util.Map;
+
+/**
+ * @InterFaceName : SysAclService
+ * Created with IDEA
+ * @author:CarlLing
+ * @CreateDate : 2019-01-27 16:52
+ * @Description : 权限接口
+ */
+public interface SysAclService {
+
+    /**
+     * 保存权限
+     * @param param
+     */
+    void save(AclParam param);
+
+    /**
+     * 更新
+     * @param param
+     */
+    void update(AclParam param);
+
+    /**
+     * 获取权限列表
+     * @param aclModuleId
+     * @param page
+     * @return
+     */
+    PageResult<SysAcl> getPageByAclModuleId(Integer aclModuleId, PageQuery page);
+
+    /**
+     * 获取特定权限
+     * @param aclId
+     * @return
+     */
+    Map getAclByAclId(int aclId);
+}

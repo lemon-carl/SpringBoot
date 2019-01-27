@@ -34,5 +34,5 @@ public interface SysTreeService {
      * @param roleId
      * @return
      */
-   // List<AclModuleLevelDto> roleTree(int roleId);
+    List<AclModuleLevelDto> roleTree(int roleId);
 }

@@ -14,7 +14,7 @@ import java.util.List;
  * Created with IDEA
  * @author:CarlLing
  * @CreateDate : 2019-01-23 23:44
- * @Description :
+ * @Description :  权限模块适配的类
  */
 @Getter
 @Setter
