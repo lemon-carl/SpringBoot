@@ -6,21 +6,21 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SysRoleMapper {
-    int deleteByPrimaryKey(Integer id);
+  int deleteByPrimaryKey(Integer id);
 
-    int insert(SysRole record);
+  int insert(SysRole record);
 
-    int insertSelective(SysRole record);
+  int insertSelective(SysRole record);
 
-    SysRole selectByPrimaryKey(Integer id);
+  SysRole selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(SysRole record);
+  int updateByPrimaryKeySelective(SysRole record);
 
-    int updateByPrimaryKey(SysRole record);
+  int updateByPrimaryKey(SysRole record);
 
-    List<SysRole> getAll();
+  List<SysRole> getAll();
 
-    int countByName(@Param("name") String name, @Param("id") Integer id);
+  int countByName(@Param("name") String name, @Param("id") Integer id);
 
-    List<SysRole> getByIdList(@Param("idList") List<Integer> idList);
+  List<SysRole> getByIdList(@Param("idList") List<Integer> idList);
 }

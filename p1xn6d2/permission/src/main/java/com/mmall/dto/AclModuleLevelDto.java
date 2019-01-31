@@ -14,7 +14,7 @@ import java.util.List;
  * Created with IDEA
  * @author:CarlLing
  * @CreateDate : 2019-01-23 23:44
- * @Description :  权限模块适配的类
+ * @Description :  鏉冮檺妯″潡閫傞厤鐨勭被
  */
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class AclModuleLevelDto extends SysAclModule{
 
     private List<AclModuleLevelDto> aclModuleList = Lists.newArrayList();
 
-    //private List<AclDto> aclList = Lists.newArrayList();
+    private List<AclDto> aclList = Lists.newArrayList();
 
     public static AclModuleLevelDto adapt(SysAclModule aclModule) {
         AclModuleLevelDto dto = new AclModuleLevelDto();

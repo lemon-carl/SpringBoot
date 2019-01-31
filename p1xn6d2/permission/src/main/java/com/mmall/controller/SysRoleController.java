@@ -2,9 +2,8 @@ package com.mmall.controller;
 
 import com.mmall.common.JsonData;
 import com.mmall.param.RoleParam;
-import com.mmall.service.SysRoleService;
-import com.mmall.service.SysTreeService;
-import com.mmall.service.SysUserService;
+import com.mmall.service.*;
+import com.mmall.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName : SysRoleController Created with IDEA
@@ -24,8 +24,8 @@ public class SysRoleController {
 
   @Resource private SysRoleService sysRoleService;
   @Resource private SysTreeService sysTreeService;
- // @Resource private SysRoleAclService sysRoleAclService;
- // @Resource private SysRoleUserService sysRoleUserService;
+  @Resource private SysRoleAclService sysRoleAclService;
+  @Resource private SysRoleUserService sysRoleUserService;
   @Resource private SysUserService sysUserService;
 
   @RequestMapping("role.page")
@@ -53,6 +53,11 @@ public class SysRoleController {
     return JsonData.success(sysRoleService.getAll());
   }
 
+    /**
+     * 角色的权限树
+     * @param roleId
+     * @return
+     */
   @RequestMapping("/roleTree.json")
   @ResponseBody
   public JsonData roleTree(@RequestParam("roleId") int roleId) {
@@ -64,8 +69,8 @@ public class SysRoleController {
   public JsonData changeAcls(
       @RequestParam("roleId") int roleId,
       @RequestParam(value = "aclIds", required = false, defaultValue = "") String aclIds) {
-    /*List<Integer> aclIdList = StringUtil.splitToListInt(aclIds);
-    sysRoleAclService.changeRoleAcls(roleId, aclIdList);*/
+    List<Integer> aclIdList = StringUtil.splitToListInt(aclIds);
+    sysRoleAclService.changeRoleAcls(roleId, aclIdList);
     return JsonData.success();
   }
 
@@ -74,15 +79,15 @@ public class SysRoleController {
   public JsonData changeUsers(
       @RequestParam("roleId") int roleId,
       @RequestParam(value = "userIds", required = false, defaultValue = "") String userIds) {
-    /*List<Integer> userIdList = StringUtil.splitToListInt(userIds);
-    sysRoleUserService.changeRoleUsers(roleId, userIdList);*/
+    List<Integer> userIdList = StringUtil.splitToListInt(userIds);
+    sysRoleUserService.changeRoleUsers(roleId, userIdList);
     return JsonData.success();
   }
 
   @RequestMapping("/users.json")
   @ResponseBody
   public JsonData users(@RequestParam("roleId") int roleId) {
-  /*  List<SysUser> selectedUserList = sysRoleUserService.getListByRoleId(roleId);
+    /*  List<SysUser> selectedUserList = sysRoleUserService.getListByRoleId(roleId);
     List<SysUser> allUserList = sysUserService.getAll();
     List<SysUser> unselectedUserList = Lists.newArrayList();
 
@@ -100,6 +105,6 @@ public class SysRoleController {
     map.put("unselected", unselectedUserList);
     return JsonData.success(map);*/
 
-  return null;
+    return null;
   }
 }

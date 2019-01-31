@@ -25,40 +25,38 @@ import javax.annotation.Resource;
 @Slf4j
 public class SysAclModuleController {
 
-    @Resource
-    private SysAclModuleService sysAclModuleService;
-    @Resource
-    private SysTreeService sysTreeService;
+  @Resource private SysAclModuleService sysAclModuleService;
+  @Resource private SysTreeService sysTreeService;
 
-    @RequestMapping("/acl.page")
-    public ModelAndView page() {
-        return new ModelAndView("acl");
-    }
+  @RequestMapping("/acl.page")
+  public ModelAndView page() {
+    return new ModelAndView("acl");
+  }
 
-    @RequestMapping("/save.json")
-    @ResponseBody
-    public JsonData saveAclModule(AclModuleParam param) {
-        sysAclModuleService.save(param);
-        return JsonData.success();
-    }
+  @RequestMapping("/save.json")
+  @ResponseBody
+  public JsonData saveAclModule(AclModuleParam param) {
+    sysAclModuleService.save(param);
+    return JsonData.success();
+  }
 
-    @RequestMapping("/update.json")
-    @ResponseBody
-    public JsonData updateAclModule(AclModuleParam param) {
-        sysAclModuleService.update(param);
-        return JsonData.success();
-    }
+  @RequestMapping("/update.json")
+  @ResponseBody
+  public JsonData updateAclModule(AclModuleParam param) {
+    sysAclModuleService.update(param);
+    return JsonData.success();
+  }
 
-    @RequestMapping("/tree.json")
-    @ResponseBody
-    public JsonData tree() {
-        return JsonData.success(sysTreeService.aclModuleTree());
-    }
+  @RequestMapping("/tree.json")
+  @ResponseBody
+  public JsonData tree() {
+    return JsonData.success(sysTreeService.aclModuleTree());
+  }
 
-    @RequestMapping("/delete.json")
-    @ResponseBody
-    public JsonData delete(@RequestParam("id") int id) {
-        sysAclModuleService.delete(id);
-        return JsonData.success();
-    }
+  @RequestMapping("/delete.json")
+  @ResponseBody
+  public JsonData delete(@RequestParam("id") int id) {
+    sysAclModuleService.delete(id);
+    return JsonData.success();
+  }
 }

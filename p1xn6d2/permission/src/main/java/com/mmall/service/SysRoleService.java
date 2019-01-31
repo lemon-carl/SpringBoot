@@ -18,74 +18,81 @@ import java.util.Map;
 @Service
 public interface SysRoleService {
 
-    /**
-     * 保存角色
-     * @param param
-     */
-    void save(RoleParam param);
+  /**
+   * 保存角色
+   *
+   * @param param
+   */
+  void save(RoleParam param);
 
-    /**
-     * 更新角色
-     * @param param
-     */
-    void update(RoleParam param);
+  /**
+   * 更新角色
+   *
+   * @param param
+   */
+  void update(RoleParam param);
 
-    /**
-     * 更具用户角色
-     * @param userId
-     * @return
-     */
-    List<SysRole> getRoleListByUserId(int userId);
+  /**
+   * 更具用户角色
+   *
+   * @param userId
+   * @return
+   */
+  List<SysRole> getRoleListByUserId(int userId);
 
-    /**
-     * 根据权限获取角色列表
-     * @param aclId
-     * @return
-     */
-    List<SysRole> getRoleListByAclId(int aclId);
+  /**
+   * 根据权限获取角色列表
+   *
+   * @param aclId
+   * @return
+   */
+  List<SysRole> getRoleListByAclId(int aclId);
 
-    /**
-     * 根据角色获取用户列表
-     * @param roleList
-     * @return
-     */
-    List<SysUser> getUserListByRoleList(List<SysRole> roleList);
+  /**
+   * 根据角色获取用户列表
+   *
+   * @param roleList
+   * @return
+   */
+  List<SysUser> getUserListByRoleList(List<SysRole> roleList);
 
+  /**
+   * 获取角色树
+   *
+   * @param roleId
+   * @return
+   */
+  // Object getRoleTreeByRoleId(int roleId);
 
+  /**
+   * 获取全部角色
+   *
+   * @return
+   */
+  List<SysRole> getAll();
 
-    /**
-     * 获取角色树
-     * @param roleId
-     * @return
-     */
-    //Object getRoleTreeByRoleId(int roleId);
+  /**
+   * 变更角色权限
+   *
+   * @param roleId
+   * @param aclIds
+   */
+  // void changeRoleAcls(int roleId, String aclIds);
 
-    /**
-     * 获取全部角色
-     * @return
-     */
-    List<SysRole> getAll();
+  /**
+   * 变更用户角色
+   *
+   * @param roleId
+   * @param userIds
+   */
+  // void changeRoleUsers(int roleId, String userIds);
 
-
-    /**
-     * 变更角色权限
-     * @param roleId
-     * @param aclIds
-     */
-   // void changeRoleAcls(int roleId, String aclIds);
-
-    /**
-     * 变更用户角色
-     * @param roleId
-     * @param userIds
-     */
-   // void changeRoleUsers(int roleId, String userIds);
-
-    /**
-     * 获取特定角色用户列表
-     * @param roleId
-     * @return
-     */
-    //Map<String, List<SysUser>> getUserListByRoleId(int roleId);
+  /**
+   * 获取特定角色用户列表
+   *
+   * @param roleId
+   * @return
+   */
+  // Map<String, List<SysUser>> getUserListByRoleId(int roleId);
 
 }

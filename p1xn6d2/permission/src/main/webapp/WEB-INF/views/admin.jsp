@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -232,16 +231,16 @@
         $(".popstyle").click(function () {
             var $this = $(this)
             $("iframe").attr(
-                    'src',
-                    $this.attr("data")
+                'src',
+                $this.attr("data")
             );
         });
 
         $(".direct").click(function () {
             var $this = $(this)
             $("iframe").attr(
-                    'src',
-                    $this.attr("data-value")
+                'src',
+                $this.attr("data-value")
             );
         });
     });

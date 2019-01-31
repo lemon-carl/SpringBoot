@@ -10,6 +10,7 @@ import com.mmall.service.SysDeptService;
 import com.mmall.util.BeanValidator;
 import com.mmall.util.IpUtil;
 import com.mmall.util.LevelUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +29,11 @@ import java.util.List;
  * @CreateDate : 2019-01-13 17:54
  * @Description : 部门业务逻辑
  */
+@Slf4j
 @Service
 public class SysDeptServiceImpl implements SysDeptService{
 
-    protected static final Logger log = LoggerFactory.getLogger(SysDeptServiceImpl.class);
+    //protected static final Logger log = LoggerFactory.getLogger(SysDeptServiceImpl.class);
 
     @Resource
     private SysDeptMapper sysDeptMapper;

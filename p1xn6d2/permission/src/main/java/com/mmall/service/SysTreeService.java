@@ -30,7 +30,7 @@ public interface SysTreeService {
    // Object getUserAclTree(int userId);
 
     /**
-     * 角色
+     * 角色树
      * @param roleId
      * @return
      */

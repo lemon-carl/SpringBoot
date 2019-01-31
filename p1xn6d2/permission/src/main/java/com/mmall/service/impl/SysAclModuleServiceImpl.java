@@ -52,6 +52,10 @@ public class SysAclModuleServiceImpl implements SysAclModuleService {
     sysAclModuleMapper.insertSelective(aclModule);
   }
 
+  /**
+   * 更新权限模块
+   * @param param
+   */
   @Override
   public void update(AclModuleParam param) {
     BeanValidator.check(param);

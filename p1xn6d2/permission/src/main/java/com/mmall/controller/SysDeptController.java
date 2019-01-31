@@ -5,6 +5,7 @@ import com.mmall.dto.DeptLevelDto;
 import com.mmall.param.DeptParam;
 import com.mmall.service.SysDeptService;
 import com.mmall.service.impl.SysTreeServiceImpl;
+
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +23,12 @@ import java.util.List;
  *
  * @author:CarlLing @CreateDate : 2019-01-13 17:50 @Description : 部门管理
  */
+@Slf4j
 @Controller
 @RequestMapping("/sys/dept")
 public class SysDeptController {
 
-  protected  static final Logger log = LoggerFactory.getLogger(SysDeptController.class);
+  //protected  static final Logger log = LoggerFactory.getLogger(SysDeptController.class);
 
   @Resource private SysDeptService sysDeptService;
 

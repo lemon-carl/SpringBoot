@@ -29,7 +29,7 @@ public interface SysAclService {
     void update(AclParam param);
 
     /**
-     * 获取权限列表
+     * 根据权限模块获取权限点接口
      * @param aclModuleId
      * @param page
      * @return

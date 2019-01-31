@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>角色</title>
-    <jsp:include page="/common/backend_common.jsp" />
+    <jsp:include page="/common/backend_common.jsp"/>
     <link rel="stylesheet" href="/ztree/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/bootstrap-duallistbox.min.css" type="text/css">
     <script type="text/javascript" src="/ztree/jquery.ztree.all.min.js"></script>
@@ -11,6 +11,7 @@
         .bootstrap-duallistbox-container .moveall, .bootstrap-duallistbox-container .removeall {
             width: 50%;
         }
+
         .bootstrap-duallistbox-container .move, .bootstrap-duallistbox-container .remove {
             width: 49%;
         }
@@ -60,12 +61,12 @@
                     </button>
                 </div>
 
-                <div id="roleUserTab" class="tab-pane fade" >
+                <div id="roleUserTab" class="tab-pane fade">
                     <div class="row">
                         <div class="box1 col-md-6">待选用户列表</div>
                         <div class="box1 col-md-6">已选用户列表</div>
                     </div>
-                    <select multiple="multiple" size="10" name="roleUserList" id="roleUserList" >
+                    <select multiple="multiple" size="10" name="roleUserList" id="roleUserList">
                     </select>
                     <div class="hr hr-16 hr-dotted"></div>
                     <button class="btn btn-info saveRoleUser" type="button">
@@ -97,7 +98,8 @@
                 </td>
             </tr>
             <td><label for="roleRemark">备注</label></td>
-            <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+            <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                          cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -141,14 +143,14 @@
         var lastRoleId = -1;
         var selectFirstTab = true;
         var hasMultiSelect = false;
-        
+
         var roleListTemplate = $("#roleListTemplate").html();
         Mustache.parse(roleListTemplate);
         var selectedUsersTemplate = $("#selectedUsersTemplate").html();
         Mustache.parse(selectedUsersTemplate);
         var unSelectedUsersTemplate = $("#unSelectedUsersTemplate").html();
         Mustache.parse(unSelectedUsersTemplate);
-        
+
         loadRoleList();
 
         // zTree
@@ -180,7 +182,8 @@
             var zTree = $.fn.zTree.getZTreeObj("roleAclTree");
             zTree.expandNode(treeNode);
         }
-        
+
+        //加载角色列表
         function loadRoleList() {
             $.ajax({
                 url: "/sys/role/list.json",
@@ -189,7 +192,7 @@
                         var rendered = Mustache.render(roleListTemplate, {roleList: result.data});
                         $("#roleList").html(rendered);
                         bindRoleClick();
-                        $.each(result.data, function(i, role) {
+                        $.each(result.data, function (i, role) {
                             roleMap[role.id] = role;
                         });
                     } else {
@@ -199,7 +202,10 @@
             });
         }
 
+        //绑定角色点击事件
         function bindRoleClick() {
+
+            //编辑角色事件
             $(".role-edit").click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -207,7 +213,7 @@
                 $("#dialog-role-form").dialog({
                     model: true,
                     title: "修改角色",
-                    open: function(event, ui) {
+                    open: function (event, ui) {
                         $(".ui-dialog-titlebar-close", $(this).parent()).hide();
                         $("#roleForm")[0].reset();
                         var targetRole = roleMap[roleId];
@@ -218,8 +224,8 @@
                             $("#roleRemark").val(targetRole.remark);
                         }
                     },
-                    buttons : {
-                        "修改": function(e) {
+                    buttons: {
+                        "修改": function (e) {
                             e.preventDefault();
                             updateRole(false, function (data) {
                                 $("#dialog-role-form").dialog("close");
@@ -234,14 +240,16 @@
                 })
             });
 
+            //点击角色名称事件
             $(".role-name").click(function (e) {
-               e.preventDefault();
-               e.stopPropagation();
-               var roleId = $(this).attr("data-id");
-               handleRoleSelected(roleId);
+                e.preventDefault();
+                e.stopPropagation();
+                var roleId = $(this).attr("data-id");
+                handleRoleSelected(roleId);
             });
         }
 
+        //处理选中角色，渲染
         function handleRoleSelected(roleId) {
             if (lastRoleId != -1) {
                 var lastRole = $("#role_" + lastRoleId + " .dd2-content:first");
@@ -259,13 +267,14 @@
             }
         }
 
+        //加载角色权限
         function loadRoleAcl(selectedRoleId) {
             if (selectedRoleId == -1) {
                 return;
             }
             $.ajax({
                 url: "/sys/role/roleTree.json",
-                data : {
+                data: {
                     roleId: selectedRoleId
                 },
                 type: 'POST',
@@ -279,34 +288,38 @@
             });
         }
 
+        //获取当前zTree中选中的id
         function getTreeSelectedId() {
             var treeObj = $.fn.zTree.getZTreeObj("roleAclTree");
             var nodes = treeObj.getCheckedNodes(true);
             var v = "";
-            for(var i = 0; i < nodes.length; i++) {
-                if(nodes[i].id.startsWith(aclPrefix)) {
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].id.startsWith(aclPrefix)) {
                     v += "," + nodes[i].dataId;
                 }
             }
-            return v.length > 0 ? v.substring(1): v;
+            return v.length > 0 ? v.substring(1) : v;
         }
 
+        //渲染角色树
         function renderRoleTree(aclModuleList) {
             zTreeObj = [];
             recursivePrepareTreeData(aclModuleList);
-            for(var key in nodeMap) {
+            for (var key in nodeMap) {
                 zTreeObj.push(nodeMap[key]);
             }
             $.fn.zTree.init($("#roleAclTree"), setting, zTreeObj);
         }
 
+        //递归生成数据
         function recursivePrepareTreeData(aclModuleList) {
             // prepare nodeMap
             if (aclModuleList && aclModuleList.length > 0) {
-                $(aclModuleList).each(function(i, aclModule) {
+                $(aclModuleList).each(function (i, aclModule) {
                     var hasChecked = false;
                     if (aclModule.aclList && aclModule.aclList.length > 0) {
-                        $(aclModule.aclList).each(function(i, acl) {
+                        //遍历当前权限点
+                        $(aclModule.aclList).each(function (i, acl) {
                             zTreeObj.push({
                                 id: aclPrefix + acl.id,
                                 pId: modulePrefix + acl.aclModuleId,
@@ -315,22 +328,23 @@
                                 checked: acl.checked,
                                 dataId: acl.id
                             });
-                            if(acl.checked) {
+                            if (acl.checked) {
                                 hasChecked = true;
                             }
                         });
                     }
+                    //权限模块处理，判断下面是否有子模块
                     if ((aclModule.aclModuleList && aclModule.aclModuleList.length > 0) ||
                         (aclModule.aclList && aclModule.aclList.length > 0)) {
                         nodeMap[modulePrefix + aclModule.id] = {
-                            id : modulePrefix + aclModule.id,
+                            id: modulePrefix + aclModule.id,
                             pId: modulePrefix + aclModule.parentId,
                             name: aclModule.name,
                             open: hasChecked
                         };
                         var tempAclModule = nodeMap[modulePrefix + aclModule.id];
-                        while(hasChecked && tempAclModule) {
-                            if(tempAclModule) {
+                        while (hasChecked && tempAclModule) {
+                            if (tempAclModule) {
                                 nodeMap[tempAclModule.id] = {
                                     id: tempAclModule.id,
                                     pId: tempAclModule.pId,
@@ -345,17 +359,18 @@
                 });
             }
         }
-        
+
+        //角色新增事件
         $(".role-add").click(function () {
             $("#dialog-role-form").dialog({
                 model: true,
                 title: "新增角色",
-                open: function(event, ui) {
+                open: function (event, ui) {
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide();
                     $("#roleForm")[0].reset();
                 },
-                buttons : {
-                    "添加": function(e) {
+                buttons: {
+                    "添加": function (e) {
                         e.preventDefault();
                         updateRole(true, function (data) {
                             $("#dialog-role-form").dialog("close");
@@ -393,12 +408,13 @@
             });
         });
 
+        //新增和更新 true：新增，false：更新
         function updateRole(isCreate, successCallback, failCallback) {
             $.ajax({
                 url: isCreate ? "/sys/role/save.json" : "/sys/role/update.json",
                 data: $("#roleForm").serializeArray(),
                 type: 'POST',
-                success: function(result) {
+                success: function (result) {
                     if (result.ret) {
                         loadRoleList();
                         if (successCallback) {
@@ -413,9 +429,9 @@
             })
         }
 
-        $("#roleTab a[data-toggle='tab']").on("shown.bs.tab", function(e) {
-            if(lastRoleId == -1) {
-                showMessage("加载角色关系","请先在左侧选择操作的角色", false);
+        $("#roleTab a[data-toggle='tab']").on("shown.bs.tab", function (e) {
+            if (lastRoleId == -1) {
+                showMessage("加载角色关系", "请先在左侧选择操作的角色", false);
                 return;
             }
             if (e.target.getAttribute("href") == '#roleAclTab') {
@@ -440,7 +456,7 @@
                         var renderedUnSelect = Mustache.render(unSelectedUsersTemplate, {userList: result.data.unselected});
                         $("#roleUserList").html(renderedSelect + renderedUnSelect);
 
-                        if(!hasMultiSelect) {
+                        if (!hasMultiSelect) {
                             $('select[name="roleUserList"]').bootstrapDualListbox({
                                 showFilterInputs: false,
                                 moveOnSelect: false,

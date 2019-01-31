@@ -29,8 +29,6 @@ import java.util.Map;
 @Slf4j
 public class TestController {
 
-  protected static final Logger log = LoggerFactory.getLogger(TestController.class);
-
   @RequestMapping("/hello.json")
   @ResponseBody
   public JsonData hello() {

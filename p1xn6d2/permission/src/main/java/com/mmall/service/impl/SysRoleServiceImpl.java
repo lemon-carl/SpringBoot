@@ -25,88 +25,91 @@ import java.util.Map;
  * Created with IDEA
  * @author:CarlLing
  * @CreateDate : 2019-01-27 22:43
- * @Description :   角色实现类
+ * @Description :   角色业务处理
  */
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
 
-    @Resource
-    private SysTreeService sysTreeService;
-    /*@Resource
-    private SysRoleAclService sysRoleAclService;*/
-    @Resource
-    private SysRoleMapper sysRoleMapper;
+  @Resource private SysTreeService sysTreeService;
+  /*@Resource
+  private SysRoleAclService sysRoleAclService;*/
+  @Resource private SysRoleMapper sysRoleMapper;
   /*  @Resource
-    private SysRoleUserService sysRoleUserService;*/
-    @Resource
-    private SysUserService sysUserService;
-   /* @Resource
-    private SysLogService sysLogService;*/
-   /* @Resource
-    private SysRoleAclMapper sysRoleAclMapper;*/
-   /* @Resource
-    private SysRoleUserMapper sysRoleUserMapper;*/
-    @Resource
-    private SysUserMapper sysUserMapper;
+  private SysRoleUserService sysRoleUserService;*/
+  @Resource private SysUserService sysUserService;
+  /* @Resource
+  private SysLogService sysLogService;*/
+  /* @Resource
+  private SysRoleAclMapper sysRoleAclMapper;*/
+  /* @Resource
+  private SysRoleUserMapper sysRoleUserMapper;*/
+  @Resource private SysUserMapper sysUserMapper;
 
-    @Override
-    public void save(RoleParam param) {
-        BeanValidator.check(param);
-        if (checkExist(param.getName(), param.getId())) {
-            throw new ParamException("角色名称已经存在");
-        }
-        SysRole role = SysRole.builder().name(param.getName()).status(param.getStatus()).type(param.getType())
-                .remark(param.getRemark()).build();
-        role.setOperator(RequestHolder.getCurrentUser().getUsername());
-        role.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-        role.setOperateTime(new Date());
-        sysRoleMapper.insertSelective(role);
-        // sysLogService.saveRoleLog(null, role);
+  @Override
+  public List<SysRole> getAll() {
+    return sysRoleMapper.getAll();
+  }
+
+  @Override
+  public void save(RoleParam param) {
+    BeanValidator.check(param);
+    if (checkExist(param.getName(), param.getId())) {
+      throw new ParamException("角色名称已经存在");
     }
+    SysRole role =
+        SysRole.builder()
+            .name(param.getName())
+            .status(param.getStatus())
+            .type(param.getType())
+            .remark(param.getRemark())
+            .build();
+    role.setOperator(RequestHolder.getCurrentUser().getUsername());
+    role.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+    role.setOperateTime(new Date());
+    sysRoleMapper.insertSelective(role);
+    // sysLogService.saveRoleLog(null, role);
+  }
 
-    @Override
-    public void update(RoleParam param) {
-        BeanValidator.check(param);
-        if (checkExist(param.getName(), param.getId())) {
-            throw new ParamException("角色名称已经存在");
-        }
-        SysRole before = sysRoleMapper.selectByPrimaryKey(param.getId());
-        Preconditions.checkNotNull(before, "待更新的角色不存在");
-
-        SysRole after = SysRole.builder().id(param.getId()).name(param.getName()).status(param.getStatus()).type(param.getType())
-                .remark(param.getRemark()).build();
-        after.setOperator(RequestHolder.getCurrentUser().getUsername());
-        after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-        after.setOperateTime(new Date());
-        sysRoleMapper.updateByPrimaryKeySelective(after);
-        //sysLogService.saveRoleLog(before, after);
+  @Override
+  public void update(RoleParam param) {
+    BeanValidator.check(param);
+    if (checkExist(param.getName(), param.getId())) {
+      throw new ParamException("角色名称已经存在");
     }
+    SysRole before = sysRoleMapper.selectByPrimaryKey(param.getId());
+    Preconditions.checkNotNull(before, "待更新的角色不存在");
 
-    private boolean checkExist(String name, Integer id) {
-        return sysRoleMapper.countByName(name, id) > 0;
-    }
+    SysRole after =
+        SysRole.builder()
+            .id(param.getId())
+            .name(param.getName())
+            .status(param.getStatus())
+            .type(param.getType())
+            .remark(param.getRemark())
+            .build();
+    after.setOperator(RequestHolder.getCurrentUser().getUsername());
+    after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+    after.setOperateTime(new Date());
+    sysRoleMapper.updateByPrimaryKeySelective(after);
+    // sysLogService.saveRoleLog(before, after);
+  }
 
-    @Override
-    public List<SysRole> getRoleListByUserId(int userId) {
-        return null;
-    }
+  private boolean checkExist(String name, Integer id) {
+    return sysRoleMapper.countByName(name, id) > 0;
+  }
 
-    @Override
-    public List<SysRole> getRoleListByAclId(int aclId) {
-        return null;
-    }
+  @Override
+  public List<SysRole> getRoleListByUserId(int userId) {
+    return null;
+  }
 
-    @Override
-    public List<SysUser> getUserListByRoleList(List <SysRole> roleList) {
-        return null;
-    }
+  @Override
+  public List<SysRole> getRoleListByAclId(int aclId) {
+    return null;
+  }
 
-
-
-    @Override
-    public List<SysRole> getAll() {
-        return sysRoleMapper.getAll();
-    }
-
-
+  @Override
+  public List<SysUser> getUserListByRoleList(List<SysRole> roleList) {
+    return null;
+  }
 }

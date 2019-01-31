@@ -21,14 +21,20 @@ import java.util.Map;
 
 /**
  * @ClassName : SysAclServiceImpl Created with IDEA
+ * @author:CarlLing
+ * @CreateDate : 2019-01-27 16:52
+ * @Description : 权限点业务处理
  *
- * @author:CarlLing @CreateDate : 2019-01-27 16:52 @Description : 权限实现类
  */
 @Service
 public class SysAclServiceImpl implements SysAclService {
 
   @Resource private SysAclMapper sysAclMapper;
 
+  /**
+   * 新增权限点
+   * @param param
+   */
   @Override
   public void save(AclParam param) {
     BeanValidator.check(param);
@@ -53,6 +59,10 @@ public class SysAclServiceImpl implements SysAclService {
     sysAclMapper.insertSelective(acl);
   }
 
+  /**
+   * 更新权限点
+   * @param param
+   */
   @Override
   public void update(AclParam param) {
     BeanValidator.check(param);
@@ -83,17 +93,6 @@ public class SysAclServiceImpl implements SysAclService {
   }
 
   @Override
-  public PageResult<SysAcl> getPageByAclModuleId(Integer aclModuleId, PageQuery page) {
-    BeanValidator.check(page);
-    int count = sysAclMapper.countByAclModuleId(aclModuleId);
-    if (count > 0) {
-      List<SysAcl> aclList = sysAclMapper.getPageByAclModuleId(aclModuleId, page);
-      return PageResult.<SysAcl>builder().data(aclList).total(count).build();
-    }
-    return PageResult.<SysAcl>builder().build();
-  }
-
-  @Override
   public Map getAclByAclId(int aclId) {
     return null;
   }
@@ -106,5 +105,22 @@ public class SysAclServiceImpl implements SysAclService {
     // return DateUtil.format(new Date(),"yyyyMMddHHmmss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     return dateFormat.format(new Date()) + "_" + (int) (Math.random() * 100);
+  }
+
+  /**
+   * 根据权限模块获取权限点接口
+   * @param aclModuleId
+   * @param page
+   * @return
+   */
+  @Override
+  public PageResult<SysAcl> getPageByAclModuleId(Integer aclModuleId, PageQuery page) {
+    BeanValidator.check(page);
+    int count = sysAclMapper.countByAclModuleId(aclModuleId);
+    if (count > 0) {
+      List<SysAcl> aclList = sysAclMapper.getPageByAclModuleId(aclModuleId, page);
+      return PageResult.<SysAcl>builder().data(aclList).total(count).build();
+    }
+    return PageResult.<SysAcl>builder().build();
   }
 }
