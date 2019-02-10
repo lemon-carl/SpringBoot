@@ -28,8 +28,6 @@ import java.util.List;
 @RequestMapping("/sys/dept")
 public class SysDeptController {
 
-  //protected  static final Logger log = LoggerFactory.getLogger(SysDeptController.class);
-
   @Resource private SysDeptService sysDeptService;
 
   @Resource private SysTreeServiceImpl sysTreeService;

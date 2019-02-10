@@ -1,6 +1,9 @@
 package com.mmall.controller;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.mmall.common.JsonData;
+import com.mmall.model.SysUser;
 import com.mmall.param.RoleParam;
 import com.mmall.service.*;
 import com.mmall.util.StringUtil;
@@ -12,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName : SysRoleController Created with IDEA
@@ -87,24 +93,28 @@ public class SysRoleController {
   @RequestMapping("/users.json")
   @ResponseBody
   public JsonData users(@RequestParam("roleId") int roleId) {
-    /*  List<SysUser> selectedUserList = sysRoleUserService.getListByRoleId(roleId);
+    //查询获取已选用户的列表
+    List<SysUser> selectedUserList = sysRoleUserService.getListByRoleId(roleId);
+    //获取所有用户的列表
     List<SysUser> allUserList = sysUserService.getAll();
+    //未选择的用户列表
     List<SysUser> unselectedUserList = Lists.newArrayList();
 
     Set<Integer> selectedUserIdSet =
         selectedUserList.stream().map(sysUser -> sysUser.getId()).collect(Collectors.toSet());
     for (SysUser sysUser : allUserList) {
+      //判断是否是正常的用户，是否包含在已选的用户中
       if (sysUser.getStatus() == 1 && !selectedUserIdSet.contains(sysUser.getId())) {
+        //添加到未选的用户列表中
         unselectedUserList.add(sysUser);
       }
     }
+    //不选择1的过滤操作
     // selectedUserList = selectedUserList.stream().filter(sysUser -> sysUser.getStatus() !=
     // 1).collect(Collectors.toList());
     Map<String, List<SysUser>> map = Maps.newHashMap();
     map.put("selected", selectedUserList);
     map.put("unselected", unselectedUserList);
-    return JsonData.success(map);*/
-
-    return null;
+    return JsonData.success(map);
   }
 }

@@ -429,6 +429,7 @@
             })
         }
 
+        //tab 点击事件
         $("#roleTab a[data-toggle='tab']").on("shown.bs.tab", function (e) {
             if (lastRoleId == -1) {
                 showMessage("加载角色关系", "请先在左侧选择操作的角色", false);
@@ -443,6 +444,7 @@
             }
         });
 
+        //加载角色用户关系维护
         function loadRoleUser(selectedRoleId) {
             $.ajax({
                 url: "/sys/role/users.json",
@@ -473,6 +475,7 @@
             });
         }
 
+        //保存角色与用户的关系
         $(".saveRoleUser").click(function (e) {
             e.preventDefault();
             if (lastRoleId == -1) {

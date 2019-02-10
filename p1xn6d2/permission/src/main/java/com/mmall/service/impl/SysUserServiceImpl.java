@@ -114,4 +114,9 @@ public class SysUserServiceImpl implements SysUserService {
     }
     return  PageResult.<SysUser>builder().build();
   }
+
+  @Override
+  public List <SysUser> getAll() {
+    return sysUserMapper.getAll();
+  }
 }

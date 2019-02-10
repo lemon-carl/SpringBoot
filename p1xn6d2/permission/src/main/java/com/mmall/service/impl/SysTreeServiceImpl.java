@@ -40,8 +40,6 @@ import java.util.stream.Collectors;
 @Service
 public class SysTreeServiceImpl implements SysTreeService {
 
-  // protected static final Logger log = LoggerFactory.getLogger(SysTreeServiceImpl.class);
-
   @Resource private SysDeptMapper sysDeptMapper;
 
   @Resource private SysAclModuleMapper sysAclModuleMapper;
@@ -124,7 +122,6 @@ public class SysTreeServiceImpl implements SysTreeService {
     for (int i = 0; i < deptLevelList.size(); i++) {
       // 遍历该层的每个元素
       DeptLevelDto deptLevelDto = deptLevelList.get(i);
-      log.info("deptLevelDto: " + deptLevelDto.getLevel() + "--" + deptLevelDto.getName());
       // 处理当前层级的数据
       String nextLevel = LevelUtil.calculateLevel(level, deptLevelDto.getId());
       // 处理下一层

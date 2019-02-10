@@ -21,9 +21,9 @@ public interface SysRoleUserService {
     void changeRoleUsers(int roleId, List<Integer> userIdList);
 
     /**
-     * 获取角色用具列表
+     * 获取角色用户列表
      * @param roleId
      * @return
      */
-    List<SysUser> getListByRoleId(int roleId);
+   public  List<SysUser> getListByRoleId(int roleId);
 }
