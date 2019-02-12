@@ -122,6 +122,7 @@ public class SysTreeServiceImpl implements SysTreeService {
     for (int i = 0; i < deptLevelList.size(); i++) {
       // 遍历该层的每个元素
       DeptLevelDto deptLevelDto = deptLevelList.get(i);
+      log.info("deptLevelDto: " + deptLevelDto.getLevel() + "--" + deptLevelDto.getName());
       // 处理当前层级的数据
       String nextLevel = LevelUtil.calculateLevel(level, deptLevelDto.getId());
       // 处理下一层
@@ -150,6 +151,7 @@ public class SysTreeServiceImpl implements SysTreeService {
     }
     return aclModuleListToTree(dtoList);
   }
+
 
   /**
    * 权限树
@@ -198,6 +200,11 @@ public class SysTreeServiceImpl implements SysTreeService {
     }
   }
 
+  /**
+   * 角色树
+   * @param roleId
+   * @return
+   */
   @Override
   public List<AclModuleLevelDto> roleTree(int roleId) {
     // 1、当前用户已分配的权限点
@@ -264,6 +271,22 @@ public class SysTreeServiceImpl implements SysTreeService {
       bindAclsWithOrder(dto.getAclModuleList(), moduleIdAclMap);
     }
   }
+
+
+  @Override
+  public List<AclModuleLevelDto> userAclTree(int userId) {
+    List<SysAcl> userAclList = sysCoreService.getUserAclList(userId);
+    List<AclDto> aclDtoList = Lists.newArrayList();
+    for (SysAcl acl : userAclList) {
+      AclDto dto = AclDto.adapt(acl);
+      dto.setHasAcl(true);
+      dto.setChecked(true);
+      aclDtoList.add(dto);
+    }
+    return aclListToTree(aclDtoList);
+  }
+
+
 
   /** 部门模块排序 */
   public Comparator<DeptLevelDto> deptSeqComparator =

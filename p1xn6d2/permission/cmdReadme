@@ -43,8 +43,7 @@ curl http://localhost:8080/test/validate.json?id=8&msg=carladmin
 7-4 新增部门、部门层级树、更新部门接口自测
 http://localhost:8080/sys/dept/save.json?name=财务部&seq=3&remark=财务部门
 http://localhost:8080/sys/dept/save.json?name=行政部&seq=3&remark=行政部门
-http://localhost:8080/sys/dept/save.json?name=财务一组&seq=1&remark=财务部门
-http://localhost:8080/sys/dept/save.json?name=财务二组&seq=2&remark=财务部门
+
 
 http://http://localhost:8080/sys/dept/tree.json
 

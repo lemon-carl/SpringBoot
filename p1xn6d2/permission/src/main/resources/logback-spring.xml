@@ -58,7 +58,7 @@
 
     <!-- * 通配符 设置log打印级别 对所有类有效TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
      <!--将上面的appender添加到root-->  
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>
@@ -72,11 +72,11 @@
 
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
    <!-- <springProfile name="test,dev">
-        <logger name="com.mg.permission.controller" level="info" />
+        <logger name="com.mmall.controller" level="info" />
     </springProfile>
     &lt;!&ndash; 生产环境. &ndash;&gt;
     <springProfile name="prod">
-        <logger name="com.mg.permission.controller" level="ERROR" />
+        <logger name="com.mmall.controller" level="ERROR" />
     </springProfile>-->
   
     <!--<!–日志异步到数据库 –>-->  

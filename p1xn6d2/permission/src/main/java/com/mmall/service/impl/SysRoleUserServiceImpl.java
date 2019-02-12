@@ -43,7 +43,8 @@ public class SysRoleUserServiceImpl implements SysRoleUserService {
     return sysUserMapper.getByIdList(userIdList);
   }
 
-  // ¸üĞÂĞèÒªÏÈÉ¾³ıÔÙ¸üĞÂ
+
+  // æ›´æ–°éœ€è¦å…ˆåˆ é™¤å†æ›´æ–°
   @Override
   public void changeRoleUsers(int roleId, List<Integer> userIdList) {
     List<Integer> originUserIdList = sysRoleUserMapper.getUserIdListByRoleId(roleId);
@@ -80,4 +81,20 @@ public class SysRoleUserServiceImpl implements SysRoleUserService {
     }
     sysRoleUserMapper.batchInsert(roleUserList);
   }
+
+
+  @Override
+  public void saveRoleUserLog(int roleId, List<Integer> userIdList) {
+    /* SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
+    sysLog.setType(LogType.TYPE_ROLE_USER);
+    sysLog.setTargetId(roleId);
+    sysLog.setOldValue(before == null ? "" : JsonMapper.obj2String(before));
+    sysLog.setNewValue(after == null ? "" : JsonMapper.obj2String(after));
+    sysLog.setOperator(RequestHolder.getCurrentUser().getUsername());
+    sysLog.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+    sysLog.setOperateTime(new Date());
+    sysLog.setStatus(1);
+    sysLogMapper.insertSelective(sysLog); */
+  }
+
 }

@@ -27,7 +27,7 @@ public interface SysTreeService {
      * @param userId
      * @return
      */
-   // Object getUserAclTree(int userId);
+    List<AclModuleLevelDto> userAclTree(int userId);
 
     /**
      * 角色树

@@ -41,5 +41,5 @@ public interface SysAclService {
      * @param aclId
      * @return
      */
-    Map getAclByAclId(int aclId);
+    //Map getAclByAclId(int aclId);
 }

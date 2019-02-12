@@ -92,10 +92,6 @@ public class SysAclServiceImpl implements SysAclService {
     // sysLogService.saveAclLog(before, after);
   }
 
-  @Override
-  public Map getAclByAclId(int aclId) {
-    return null;
-  }
 
   public boolean checkExist(int aclModuleId, String name, Integer id) {
      return sysAclMapper.countByNameAndAclModuleId(aclModuleId, name, id) > 0;

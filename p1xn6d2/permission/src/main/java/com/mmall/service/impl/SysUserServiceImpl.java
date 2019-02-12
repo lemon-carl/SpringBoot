@@ -54,8 +54,8 @@ public class SysUserServiceImpl implements SysUserService {
             .build();
     user.setOperator(RequestHolder.getCurrentUser().getUsername());
     user.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-    //user.setOperator("system"); // TODO:
-    //user.setOperateIp("127.0.0.1"); // TODO;
+    //user.setOperator("system"); // TODO
+    //user.setOperateIp("127.0.0.1"); // TODO
     user.setOperateTime(new Date());
     // TODO: sendEmail
 

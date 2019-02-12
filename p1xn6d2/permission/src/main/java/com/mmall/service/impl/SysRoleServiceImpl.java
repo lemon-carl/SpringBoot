@@ -1,8 +1,11 @@
 package com.mmall.service.impl;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import com.mmall.common.RequestHolder;
+import com.mmall.dao.SysRoleAclMapper;
 import com.mmall.dao.SysRoleMapper;
+import com.mmall.dao.SysRoleUserMapper;
 import com.mmall.dao.SysUserMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysRole;
@@ -10,15 +13,15 @@ import com.mmall.model.SysUser;
 import com.mmall.param.RoleParam;
 import com.mmall.service.SysRoleService;
 import com.mmall.service.SysTreeService;
-import com.mmall.service.SysUserService;
 import com.mmall.util.BeanValidator;
 import com.mmall.util.IpUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName : SysRoleServiceImpl
@@ -30,20 +33,15 @@ import java.util.Map;
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
 
-  @Resource private SysTreeService sysTreeService;
-  /*@Resource
-  private SysRoleAclService sysRoleAclService;*/
   @Resource private SysRoleMapper sysRoleMapper;
-  /*  @Resource
-  private SysRoleUserService sysRoleUserService;*/
-  @Resource private SysUserService sysUserService;
-  /* @Resource
-  private SysLogService sysLogService;*/
-  /* @Resource
-  private SysRoleAclMapper sysRoleAclMapper;*/
-  /* @Resource
-  private SysRoleUserMapper sysRoleUserMapper;*/
+
+  @Resource private SysRoleAclMapper sysRoleAclMapper;
+
+  @Resource private SysRoleUserMapper sysRoleUserMapper;
+
   @Resource private SysUserMapper sysUserMapper;
+
+
 
   @Override
   public List<SysRole> getAll() {
@@ -100,16 +98,33 @@ public class SysRoleServiceImpl implements SysRoleService {
 
   @Override
   public List<SysRole> getRoleListByUserId(int userId) {
-    return null;
+    List<Integer> roleIdList = sysRoleUserMapper.getRoleIdListByUserId(userId);
+    if (CollectionUtils.isEmpty(roleIdList)) {
+      return Lists.newArrayList();
+    }
+    return sysRoleMapper.getByIdList(roleIdList);
   }
 
   @Override
   public List<SysRole> getRoleListByAclId(int aclId) {
-    return null;
+    List<Integer> roleIdList = sysRoleAclMapper.getRoleIdListByAclId(aclId);
+    if (CollectionUtils.isEmpty(roleIdList)) {
+      return Lists.newArrayList();
+    }
+    return sysRoleMapper.getByIdList(roleIdList);
   }
 
   @Override
   public List<SysUser> getUserListByRoleList(List<SysRole> roleList) {
-    return null;
+    if (CollectionUtils.isEmpty(roleList)) {
+      return Lists.newArrayList();
+    }
+    List<Integer> roleIdList =
+        roleList.stream().map(role -> role.getId()).collect(Collectors.toList());
+    List<Integer> userIdList = sysRoleUserMapper.getUserIdListByRoleIdList(roleIdList);
+    if (CollectionUtils.isEmpty(userIdList)) {
+      return Lists.newArrayList();
+    }
+    return sysUserMapper.getByIdList(userIdList);
   }
 }

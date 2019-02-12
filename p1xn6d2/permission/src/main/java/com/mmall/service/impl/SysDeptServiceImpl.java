@@ -3,6 +3,7 @@ package com.mmall.service.impl;
 import com.google.common.base.Preconditions;
 import com.mmall.common.RequestHolder;
 import com.mmall.dao.SysDeptMapper;
+import com.mmall.dao.SysUserMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysDept;
 import com.mmall.param.DeptParam;
@@ -33,10 +34,12 @@ import java.util.List;
 @Service
 public class SysDeptServiceImpl implements SysDeptService{
 
-    //protected static final Logger log = LoggerFactory.getLogger(SysDeptServiceImpl.class);
 
     @Resource
     private SysDeptMapper sysDeptMapper;
+
+    @Resource
+    private SysUserMapper sysUserMapper;
 
     public void save(DeptParam param){
         //基本的验证
@@ -95,9 +98,9 @@ public class SysDeptServiceImpl implements SysDeptService{
         if (sysDeptMapper.countByParentId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有子部门，无法删除");
         }
-       /* if(sysUserMapper.countByDeptId(dept.getId()) > 0) {
+        if(sysUserMapper.countByDeptId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有用户，无法删除");
-        }*/
+        }
         log.info("部门： " +dept.getName() + "，层级:" +dept.getLevel() + ",id:" + dept.getId() +"，父级："+ dept.getParentId());
         sysDeptMapper.deleteByPrimaryKey(deptId);
     }

@@ -1,18 +1,25 @@
 package com.mmall.service.impl;
 
 import com.google.common.collect.Lists;
+import com.mmall.beans.CacheKeyConstants;
 import com.mmall.common.RequestHolder;
 import com.mmall.dao.SysAclMapper;
 import com.mmall.dao.SysRoleAclMapper;
 import com.mmall.dao.SysRoleUserMapper;
 import com.mmall.model.SysAcl;
 import com.mmall.model.SysUser;
+import com.mmall.service.SysCacheService;
 import com.mmall.service.SysCoreService;
+import com.mmall.util.JsonMapper;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @Auth CarlLing

@@ -30,6 +30,7 @@ public interface SysDeptMapper {
     //检查数据是否有重复
     int countByNameAndParentId(@Param("parentId") Integer parentId, @Param("name") String name, @Param("id") Integer id);
 
+    //当前部门下面是否有子部门
     int countByParentId(@Param("deptId") Integer deptId);
 
 }
