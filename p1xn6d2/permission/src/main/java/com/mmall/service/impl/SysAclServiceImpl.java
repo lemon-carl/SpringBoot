@@ -9,6 +9,7 @@ import com.mmall.exception.ParamException;
 import com.mmall.model.SysAcl;
 import com.mmall.param.AclParam;
 import com.mmall.service.SysAclService;
+import com.mmall.service.SysLogService;
 import com.mmall.util.BeanValidator;
 import com.mmall.util.IpUtil;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,8 @@ import java.util.Map;
 public class SysAclServiceImpl implements SysAclService {
 
   @Resource private SysAclMapper sysAclMapper;
+
+  @Resource private SysLogService sysLogService;
 
   /**
    * 新增权限点
@@ -57,6 +60,7 @@ public class SysAclServiceImpl implements SysAclService {
     acl.setOperateTime(new Date());
 
     sysAclMapper.insertSelective(acl);
+    sysLogService.saveAclLog(null, acl);
   }
 
   /**
@@ -89,7 +93,7 @@ public class SysAclServiceImpl implements SysAclService {
     after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
 
     sysAclMapper.updateByPrimaryKeySelective(after);
-    // sysLogService.saveAclLog(before, after);
+    sysLogService.saveAclLog(before, after);
   }
 
 

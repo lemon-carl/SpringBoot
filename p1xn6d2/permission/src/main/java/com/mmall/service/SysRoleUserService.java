@@ -27,10 +27,5 @@ public interface SysRoleUserService {
      */
    List<SysUser> getListByRoleId(int roleId);
 
-    /**
-     * 保存角色用户日志
-     * @param roleId
-     * @param userIdList
-     */
-   void saveRoleUserLog(int roleId, List<Integer> userIdList);
+
 }

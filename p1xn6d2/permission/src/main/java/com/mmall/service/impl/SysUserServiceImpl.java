@@ -8,6 +8,7 @@ import com.mmall.dao.SysUserMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysUser;
 import com.mmall.param.UserParam;
+import com.mmall.service.SysLogService;
 import com.mmall.service.SysUserService;
 import com.mmall.util.BeanValidator;
 import com.mmall.util.IpUtil;
@@ -16,6 +17,7 @@ import com.mmall.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +29,9 @@ import java.util.List;
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
-  @Autowired private SysUserMapper sysUserMapper;
+  @Resource private SysUserMapper sysUserMapper;
+
+  @Resource private SysLogService sysLogService;
 
   @Override
   public void save(UserParam param) {
@@ -57,10 +61,11 @@ public class SysUserServiceImpl implements SysUserService {
     //user.setOperator("system"); // TODO
     //user.setOperateIp("127.0.0.1"); // TODO
     user.setOperateTime(new Date());
+
     // TODO: sendEmail
 
     sysUserMapper.insertSelective(user);
-    // sysLogService.saveUserLog(null, user);
+    sysLogService.saveUserLog(null, user);
 
   }
 
@@ -88,8 +93,9 @@ public class SysUserServiceImpl implements SysUserService {
     after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
     //after.setOperateIp("127.0.0.1"); // TODO;
     after.setOperateTime(new Date());
+
     sysUserMapper.updateByPrimaryKeySelective(after);
-    // sysLogService.saveUserLog(before, after);
+    sysLogService.saveUserLog(before, after);
   }
 
   public boolean checkEmailExist(String mail, Integer userId) {

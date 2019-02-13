@@ -60,6 +60,7 @@ public class SysTreeServiceImpl implements SysTreeService {
     // 适配器模式
     List<DeptLevelDto> dtoList = Lists.newArrayList();
     for (SysDept dept : deptList) {
+      log.info("dept:==>" + dept.getId() + "=="+ dept.getName() + "--" + dept.getParentId() + "++" + dept.getOperator());
       // 适配出一个dto出来
       DeptLevelDto dto = DeptLevelDto.adapt(dept);
       dtoList.add(dto);

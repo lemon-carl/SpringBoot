@@ -2,11 +2,16 @@ package com.mmall.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.mmall.beans.LogType;
 import com.mmall.common.RequestHolder;
+import com.mmall.dao.SysLogMapper;
 import com.mmall.dao.SysRoleAclMapper;
+import com.mmall.model.SysLogWithBLOBs;
 import com.mmall.model.SysRoleAcl;
+import com.mmall.service.SysLogService;
 import com.mmall.service.SysRoleAclService;
 import com.mmall.util.IpUtil;
+import com.mmall.util.JsonMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +31,10 @@ import java.util.Set;
 public class SysRoleAclServiceImpl implements SysRoleAclService {
 
   @Resource private SysRoleAclMapper sysRoleAclMapper;
-  // @Resource
-  // private SysLogMapper sysLogMapper;
+
+  //@Resource private SysLogService sysLogService;
+  @Resource private SysLogMapper sysLogMapper;
+
 
   @Override
   public void changeRoleAcls(int roleId, List<Integer> aclIdList) {
@@ -42,7 +49,8 @@ public class SysRoleAclServiceImpl implements SysRoleAclService {
       }
     }
     updateRoleAcls(roleId, aclIdList);
-    //saveRoleAclLog(roleId, originAclIdList, aclIdList);
+    //sysLogService.saveRoleAclLog(roleId, originAclIdList, aclIdList);
+    saveRoleAclLog(roleId, originAclIdList, aclIdList);
   }
 
   @Transactional
@@ -66,7 +74,7 @@ public class SysRoleAclServiceImpl implements SysRoleAclService {
     sysRoleAclMapper.batchInsert(roleAclList);
   }
 
-   /* private void saveRoleAclLog(int roleId, List<Integer> before, List<Integer> after) {
+    private void saveRoleAclLog(int roleId, List<Integer> before, List<Integer> after) {
         SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
         sysLog.setType(LogType.TYPE_ROLE_ACL);
         sysLog.setTargetId(roleId);
@@ -77,7 +85,7 @@ public class SysRoleAclServiceImpl implements SysRoleAclService {
         sysLog.setOperateTime(new Date());
         sysLog.setStatus(1);
         sysLogMapper.insertSelective(sysLog);
-    }*/
+    }
 
 
 }

@@ -114,9 +114,9 @@ public class SysCoreServiceImpl implements SysCoreService {
       // 可以是配置文件获取，可以指定某个用户，也可以指定某个角色
       SysUser sysUser = RequestHolder.getCurrentUser();
       if (sysUser.getMail().contains("admin")) {
+          //TODO
           //return true;
       }
-     //TODO
       return false;
   }
 

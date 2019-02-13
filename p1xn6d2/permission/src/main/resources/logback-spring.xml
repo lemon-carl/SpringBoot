@@ -58,26 +58,26 @@
 
     <!-- * 通配符 设置log打印级别 对所有类有效TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
      <!--将上面的appender添加到root-->  
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>
 
     <!-- logback为java中的包 -->
-  <!--  <logger name="com.mg.permission.controller"/>
-    &lt;!&ndash;logback.LogbackDemo：类的全路径 &ndash;&gt;
+    <logger name="com.mg.permission.controller"/>
+    <!--logback.LogbackDemo：类的全路径 -->
     <logger name="com.mg.permission.controller.DeptController" level="info" additivity="false">
         <appender-ref ref="console"/>
-    </logger>-->
+    </logger>
 
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
-   <!-- <springProfile name="test,dev">
+    <springProfile name="test,dev">
         <logger name="com.mmall.controller" level="info" />
     </springProfile>
-    &lt;!&ndash; 生产环境. &ndash;&gt;
+    <!-- 生产环境. -->
     <springProfile name="prod">
         <logger name="com.mmall.controller" level="ERROR" />
-    </springProfile>-->
+    </springProfile>
   
     <!--<!–日志异步到数据库 –>-->  
     <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->  
