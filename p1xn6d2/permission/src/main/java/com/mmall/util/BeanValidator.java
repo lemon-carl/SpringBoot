@@ -5,8 +5,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mmall.exception.ParamException;
 import org.apache.commons.collections.MapUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -18,11 +16,11 @@ import java.util.*;
 /**
  * @ClassName : BeanValidator Created with IDEA
  *
- * @author:CarlLing @CreateDate : 2019-01-12 0:43 @Description : 参数校验工具类
+ * @author:CarlLing
+ * @CreateDate : 2019-01-12 0:43
+ * @Description : 参数校验工具类
  */
 public class BeanValidator {
-
-  protected static final Logger log = LoggerFactory.getLogger(BeanValidator.class);
 
   //创建一个自己的工厂
   private static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
@@ -114,7 +112,7 @@ public class BeanValidator {
     Map<String, String> map = BeanValidator.validateObject(param);
     // if(map != null && map.entrySet().size() > 0 ){
     //maven commons-collections
-    if (!MapUtils.isEmpty(map)) {
+    if (MapUtils.isNotEmpty(map)) {
       throw new ParamException(map.toString());
     }
   }

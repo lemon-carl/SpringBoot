@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @ClassName : SpringExceptionResolver Created with IDEA
  *
- * @author:CarlLing @CreateDate : 2019-01-11 23:33 @Description : 全局异常处理类
+ * @author:CarlLing
+ * @CreateDate : 2019-01-11 23:33
+ * @Description : 全局异常处理类
  *
  * HandlerExceptionResolver 接口中定义了一个resolveException方法，处理全局异常。
  * Exception ex参数即抛出的异常。返回值类型是ModelAndView，可以通过这个返回值来设置异常时显示的页面。
@@ -25,11 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class SpringExceptionResolver implements HandlerExceptionResolver {
 
-  protected static final Logger log = LoggerFactory.getLogger(SpringExceptionResolver.class);
 
   @Override
-  public ModelAndView resolveException(
-      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+  public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
     //当前返回的url
     String url = request.getRequestURL().toString();
     ModelAndView modelAndView;
@@ -45,7 +45,9 @@ public class SpringExceptionResolver implements HandlerExceptionResolver {
         JsonData result = JsonData.fail(defautMsg);
         modelAndView = new ModelAndView("jsonView", result.toMap());
       }
-    } else if (url.endsWith(".page")) { // 要求项目中所有的请求page页面，都使用.page结尾
+
+    // 要求项目中所有的请求page页面，都使用.page结尾
+    } else if (url.endsWith(".page")) {
       log.error("unknow page exception, url: " + url, ex);
       JsonData result = JsonData.fail(defautMsg);
       modelAndView = new ModelAndView("exception", result.toMap());

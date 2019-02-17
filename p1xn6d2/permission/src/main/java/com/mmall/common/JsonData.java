@@ -8,8 +8,9 @@ import java.util.Map;
 
 /**
  * @ClassName : JsonData Created with IDEA
- *
- * @author:CarlLing @CreateDate : 2019-01-11 23:21 @Description :请求返回格式
+ * @author: CarlLing
+ * @CreateDate : 2019-01-11 23:21
+ * @Description : 请求返回格式
  */
 @Getter
 @Setter

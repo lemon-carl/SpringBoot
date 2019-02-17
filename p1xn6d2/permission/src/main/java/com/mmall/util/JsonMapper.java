@@ -13,13 +13,14 @@ import org.slf4j.LoggerFactory;
 /**
  * @ClassName : JsonMapper Created with IDEA
  *
- * @author:CarlLing @CreateDate : 2019-01-12 21:38 @Description : Json转换工具
- * java对象和json相互转化
+ * @author:CarlLing
+ * @CreateDate : 2019-01-12 21:38
+ * @Description : Json转换工具
+ *
+ *  java对象和json相互转化
  */
 @Slf4j
 public class JsonMapper {
-
-  protected static final Logger log = LoggerFactory.getLogger(JsonMapper.class);
 
   private static ObjectMapper objectMapper = new ObjectMapper();
 
@@ -48,15 +49,9 @@ public class JsonMapper {
       return null;
     }
     try {
-      return typeReference.getType().equals(String.class)
-          ? (T) src
-          : objectMapper.readValue(src, typeReference);
+      return typeReference.getType().equals(String.class) ? (T) src : objectMapper.readValue(src, typeReference);
     } catch (Exception e) {
-      log.warn(
-          "pare String to Object exception, String:{}, TypeReference<T>:{},error:{}",
-          src,
-          typeReference,
-          e);
+      log.warn("pare String to Object exception, String:{}, TypeReference<T>:{},error:{}", src, typeReference,e);
       return null;
     }
   }

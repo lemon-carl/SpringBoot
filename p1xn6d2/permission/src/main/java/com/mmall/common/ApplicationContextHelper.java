@@ -32,15 +32,15 @@ public class ApplicationContextHelper implements ApplicationContextAware{
 
     /**
      * 获取bean
-     * @param clazzz
+     * @param clazz
      * @param <T>
      * @return
      */
-    public static <T> T popBean(Class<T> clazzz){
+    public static <T> T popBean(Class<T> clazz){
         if (applicationContext == null){
             return null;
         }
-        return applicationContext.getBean(clazzz);
+        return applicationContext.getBean(clazz);
     }
 
     /**

@@ -45,12 +45,12 @@ public class TestController {
 
     SysAclModuleMapper moduleMapper = ApplicationContextHelper.popBean(SysAclModuleMapper.class);
     SysAclModule module = moduleMapper.selectByPrimaryKey(15);
-    log.info(JsonMapper.obj2String(module));
+    log.info("validate--> "+JsonMapper.obj2String(module));
 
     /* try {
       Map<String, String> map = BeanValidator.validateObject(vo);
       // if(map != null && map.entrySet().size() > 0){
-      if (MapUtils.isEmpty(map)) {
+      if (MapUtils.isNotEmpty(map)) {
         for (Map.Entry<String, String> entry : map.entrySet()) {
           log.info("{}->{} ", entry.getKey(), entry.getValue());
         }

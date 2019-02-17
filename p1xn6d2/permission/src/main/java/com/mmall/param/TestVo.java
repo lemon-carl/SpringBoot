@@ -25,8 +25,8 @@ public class TestVo {
     private String msg;
 
     @NotNull(message = "id不能为空")
-    @Max(value = 10, message = "id 不能大于 10")
-    @Min(value = 0, message = "id 至少大于等于0")
+    @Max(value = 10, message = "id不能大于10")
+    @Min(value = 0, message = "id至少大于等于0")
     private Integer id;
 
     //@NotEmpty

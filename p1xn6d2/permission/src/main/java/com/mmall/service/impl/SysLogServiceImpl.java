@@ -123,7 +123,7 @@ public class SysLogServiceImpl implements SysLogService {
         sysLogMapper.insertSelective(sysLog);
     }
 
-    @Override
+/*    @Override
     public void saveRoleAclLog(int roleId, List<Integer> before, List<Integer> after) {
         SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
         sysLog.setType(LogType.TYPE_ROLE_ACL);
@@ -135,9 +135,9 @@ public class SysLogServiceImpl implements SysLogService {
         sysLog.setOperateTime(new Date());
         sysLog.setStatus(1);
         sysLogMapper.insertSelective(sysLog);
-    }
+    }*/
 
-    @Override
+ /*   @Override
     public void saveRoleUserLog(int roleId, List<Integer> before, List<Integer> after) {
         SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
         sysLog.setType(LogType.TYPE_ROLE_USER);
@@ -149,7 +149,7 @@ public class SysLogServiceImpl implements SysLogService {
         sysLog.setOperateTime(new Date());
         sysLog.setStatus(1);
         sysLogMapper.insertSelective(sysLog);
-    }
+    }*/
 
     @Override
     public void recover(int id) {

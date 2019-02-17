@@ -79,7 +79,7 @@
 
         <ul class="nav nav-list">
             <li class="active">
-                <a class="popstyle" href="/sys/user/page.do" target="_blank">
+                <a class="popstyle" href="/index.jsp" target="_blank">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> 首页 </span>
                 </a>
@@ -126,7 +126,7 @@
                 </ul>
             </li>
 
-            <li class="">
+            <%--<li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text"> 系统管理 </span>
@@ -144,7 +144,7 @@
                         <b class="arrow"></b>
                     </li>
                 </ul>
-            </li>
+            </li>--%>
         </ul>
         <!-- /.nav-list -->
 

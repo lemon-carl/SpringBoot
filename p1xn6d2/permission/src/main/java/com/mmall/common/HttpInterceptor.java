@@ -24,8 +24,6 @@ import java.util.Map;
 @Slf4j
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
-    protected static final Logger logger = LoggerFactory.getLogger(HttpInterceptor.class);
-
     private static final String START_TIME = "requestStartTime";
 
     /**
@@ -40,7 +38,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI().toString();
         Map  parameterMap = request.getParameterMap();
-        logger.info("request start. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));
+        log.info("request start. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));
         long start = System.currentTimeMillis();
         request.setAttribute(START_TIME,start);
         return true;
@@ -57,12 +55,12 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-     /*   String url = request.getRequestURI().toString();
-        *//*Map parameterMap = request.getParameterMap();
-        logger.info("request finished. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));*//*
+        /*String url = request.getRequestURI().toString();
+        Map parameterMap = request.getParameterMap();
+        log.info("request finished. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));
         long start = (long) request.getAttribute(START_TIME);
         long end = System.currentTimeMillis();
-        logger.info("request finished. url:{},cost:{}",url,end -start);*/
+        log.info("request finished. url:{},cost:{}",url,end -start);*/
 
         removeThreadLocalInfo();
     }
@@ -80,11 +78,11 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)  {
         String url = request.getRequestURI().toString();
         /* Map  parameterMap = request.getParameterMap();
-        logger.info("request completed. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));*/
+        log.info("request completed. url:{},params:{}",url, JsonMapper.obj2String(parameterMap));*/
 
         long start = (long) request.getAttribute(START_TIME);
         long end = System.currentTimeMillis();
-        logger.info("request completed. url:{},cost:{}",url,end -start);
+        log.info("request completed. url:{},cost:{}",url,end -start);
 
         removeThreadLocalInfo();
     }

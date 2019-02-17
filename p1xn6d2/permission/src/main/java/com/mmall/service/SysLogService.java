@@ -57,7 +57,7 @@ public interface SysLogService {
      * @param before
      * @param after
      */
-    void saveRoleAclLog(int roleId,  List<Integer> before, List<Integer> after);
+    //void saveRoleAclLog(int roleId,  List<Integer> before, List<Integer> after);
 
     /**
      * 用户角色日志
@@ -65,7 +65,7 @@ public interface SysLogService {
      * @param before
      * @param after
      */
-    void saveRoleUserLog(int roleId, List<Integer> before, List<Integer> after);
+    //void saveRoleUserLog(int roleId, List<Integer> before, List<Integer> after);
 
     /**
      * 记录恢复
