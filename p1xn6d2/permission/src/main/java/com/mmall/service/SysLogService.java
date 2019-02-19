@@ -1,11 +1,9 @@
 package com.mmall.service;
 
 import com.mmall.beans.PageQuery;
-import com.mmall.controller.PageResult;
+import com.mmall.beans.PageResult;
 import com.mmall.model.*;
 import com.mmall.param.SearchLogParam;
-
-import java.util.List;
 
 /**
  * @InterFaceName : SysLogService

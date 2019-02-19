@@ -3,7 +3,7 @@ package com.mmall.service.impl;
 import com.google.common.base.Preconditions;
 import com.mmall.beans.PageQuery;
 import com.mmall.common.RequestHolder;
-import com.mmall.controller.PageResult;
+import com.mmall.beans.PageResult;
 import com.mmall.dao.SysUserMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysUser;
@@ -14,7 +14,6 @@ import com.mmall.util.BeanValidator;
 import com.mmall.util.IpUtil;
 import com.mmall.util.MD5Util;
 import com.mmall.util.PasswordUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,7 +23,9 @@ import java.util.List;
 /**
  * @ClassName : SysUserServiceImpl Created with IDEA
  *
- * @author:CarlLing @CreateDate : 2019-01-20 21:40 @Description : 用户业务逻辑
+ * @author:CarlLing
+ * @CreateDate : 2019-01-20 21:40
+ * @Description : 用户业务逻辑
  */
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -44,7 +45,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
     String password = PasswordUtil.randomPassword();
     // TODO:
-    password = "12345678";
+    //password = "12345678";
+    password = "admin";
     String encryptedPassword = MD5Util.encrypt(password);
     SysUser user =
         SysUser.builder()
@@ -61,6 +63,7 @@ public class SysUserServiceImpl implements SysUserService {
     user.setOperateTime(new Date());
 
     // TODO: sendEmail
+    //通过邮件通知用户告知密码，
 
     sysUserMapper.insertSelective(user);
     sysLogService.saveUserLog(null, user);
@@ -89,7 +92,6 @@ public class SysUserServiceImpl implements SysUserService {
             .build();
     after.setOperator(RequestHolder.getCurrentUser().getUsername());
     after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-    //after.setOperateIp("127.0.0.1"); // TODO;
     after.setOperateTime(new Date());
 
     sysUserMapper.updateByPrimaryKeySelective(after);

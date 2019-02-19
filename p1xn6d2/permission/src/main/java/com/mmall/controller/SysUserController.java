@@ -2,6 +2,7 @@ package com.mmall.controller;
 
 import com.google.common.collect.Maps;
 import com.mmall.beans.PageQuery;
+import com.mmall.beans.PageResult;
 import com.mmall.common.JsonData;
 import com.mmall.model.SysUser;
 import com.mmall.param.UserParam;

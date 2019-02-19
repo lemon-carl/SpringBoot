@@ -91,7 +91,9 @@ public class SysDeptServiceImpl implements SysDeptService{
             .remark(param.getRemark())
             .build();
     after.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()), param.getParentId()));
+    // after.setOperator("system-update");//TODO:
     after.setOperator(RequestHolder.getCurrentUser().getUsername());
+    // after.setOperateIp("127.0.0.1");//TODO:
     after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
     after.setOperateTime(new Date());
 
@@ -154,7 +156,6 @@ public class SysDeptServiceImpl implements SysDeptService{
 
   // 检查数据是否有重复
   private boolean checkExist(Integer parentId, String deptName, Integer deptId) {
-    // TODO:
     return sysDeptMapper.countByNameAndParentId(parentId, deptName, deptId) > 0;
   }
 

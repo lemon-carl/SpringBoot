@@ -1,4 +1,4 @@
-package com.mmall.controller;
+package com.mmall.beans;
 
 import com.google.common.collect.Lists;
 import lombok.Builder;

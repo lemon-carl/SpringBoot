@@ -3,7 +3,7 @@ package com.mmall.service.impl;
 import com.google.common.base.Preconditions;
 import com.mmall.beans.PageQuery;
 import com.mmall.common.RequestHolder;
-import com.mmall.controller.PageResult;
+import com.mmall.beans.PageResult;
 import com.mmall.dao.SysAclMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysAcl;
@@ -18,7 +18,6 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName : SysAclServiceImpl Created with IDEA

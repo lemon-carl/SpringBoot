@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.mmall.beans.LogType;
 import com.mmall.beans.PageQuery;
 import com.mmall.common.RequestHolder;
-import com.mmall.controller.PageResult;
+import com.mmall.beans.PageResult;
 import com.mmall.dao.*;
 import com.mmall.dto.SearchLogDto;
 import com.mmall.exception.ParamException;
@@ -21,7 +21,6 @@ import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

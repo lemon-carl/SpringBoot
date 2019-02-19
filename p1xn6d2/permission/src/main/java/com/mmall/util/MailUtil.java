@@ -18,12 +18,12 @@ public class MailUtil {
 
     public static boolean send(Mail mail) {
 
-        // TODO
-        String from = "";
+        // TODO:
+        String from = "mrling55@sina.com";
         int port = 25;
         String host = "";
-        String pass = "";
-        String nickname = "";
+        String pass = "*******";
+        String nickname = "mrling55";
 
         HtmlEmail email = new HtmlEmail();
         try {

@@ -17,9 +17,8 @@ import java.io.IOException;
  * @Version 1.0
  * @Desc  登录拦截请求
  */
+@Slf4j
 public class LoginFilter implements Filter{
-
-    protected  static final Logger log = LoggerFactory.getLogger(LoginFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -32,6 +31,7 @@ public class LoginFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         SysUser sysUser = (SysUser) request.getSession().getAttribute("user");
+        /*log.info("LoginFilter :-->" + sysUser.getUsername());*/
         if (sysUser == null){
             String path = "/signin.jsp";
             response.sendRedirect(path);

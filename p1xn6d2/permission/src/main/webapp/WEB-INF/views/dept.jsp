@@ -6,7 +6,7 @@
     <jsp:include page="/common/page.jsp"/>
 </head>
 <body class="no-skin" youdao="bind" style="background: white">
-<input id="gritter-light" checked="" type="checkbox" class="ace-icon ace-switch ace-switch-5"/>
+<%--<input id="gritter-light" checked="" type="checkbox" class="ace-icon ace-switch ace-switch-5"/>--%>
 
 <div class="page-header">
     <h1>
@@ -166,6 +166,10 @@
                 <li class="dd-item dd2-item dept-name" id="dept_{{id}}" href="javascript:void(0)" data-id="{{id}}">
                     <div class="dd2-content" style="cursor:pointer;">
                     {{name}}
+                    &nbsp;
+                    <a class="green {{#showDownAngle}}{{/showDownAngle}}" href="#" data-id="{{id}}" >
+                        <i class="ace-icon fa fa-angle-double-down bigger-120 sub-dept"></i>
+                    </a>
                     <span style="float:right;">
                         <a class="green dept-edit" href="#" data-id="{{id}}" >
                             <i class="ace-icon fa fa-pencil bigger-100"></i>
@@ -207,7 +211,6 @@
 
 <script type="application/javascript">
     $(function () {
-
         var deptList;  // 存储树形部门列表
         var deptMap = {}; // 存储map格式的部门信息
         var userMap = {}; // 存储map格式的用户信息
@@ -230,7 +233,17 @@
                 success: function (result) {
                     if (result.ret) {
                         deptList = result.data;
-                        var rendered = Mustache.render(deptListTemplate, {deptList: result.data});
+                        var rendered = Mustache.render(deptListTemplate, {
+                            deptList: result.data,
+                            "showDownAngle": function () {
+                                return function (text, render) {
+                                    return (this.deptList && this.deptList.length > 0) ? "" : "hidden";
+                                }
+                            },
+                            "displayClass": function () {
+                                return "";
+                            }
+                        });
                         $("#deptList").html(rendered);
                         recursiveRenderDept(result.data);
                         bindDeptClick();
@@ -246,8 +259,18 @@
             if (deptList && deptList.length > 0) {
                 $(deptList).each(function (i, dept) {
                     deptMap[dept.id] = dept;
-                    if (dept.deptList.length > 0) {
-                        var rendered = Mustache.render(deptListTemplate, {deptList: dept.deptList});
+                    if (dept.deptList && dept.deptList.length > 0) {
+                        var rendered = Mustache.render(deptListTemplate, {
+                            deptList: dept.deptList,
+                            "showDownAngle": function () {
+                                return function (text, render) {
+                                    return (this.deptList && this.deptList.length > 0) ? "" : "hidden";
+                                }
+                            },
+                            "displayClass": function () {
+                                return "hidden";
+                            }
+                        });
                         $("#dept_" + dept.id).append(rendered);
                         recursiveRenderDept(dept.deptList);
                     }
@@ -257,6 +280,20 @@
 
         //绑定部门点击事件
         function bindDeptClick() {
+            //子部门点击事件
+            $(".sub-dept").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation(); //冒泡拦截
+                //父节点的父节点的父节点的子节点的子节点
+                $(this).parent().parent().parent().children().children(".dept-name").toggleClass("hidden");
+                //如果包含向下箭头，则删除向下箭头 ,添加向上箭头
+                if ($(this).is(".fa-angle-double-down")) {
+                    $(this).removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+                } else {
+                    $(this).removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+                }
+            });
+
             //点击部门名称
             $(".dept-name").click(function (e) {
                 e.preventDefault();
@@ -409,7 +446,7 @@
         //添加用户点击事件
         $(".user-add").click(function () {
             $("#dialog-user-form").dialog({
-                model: true,
+                model: true, //dialog弹出来，后面界面不能点击
                 title: "新增用户",
                 open: function (event, ui) {
                     $(".ui-dialog-titlebar-close", $(this).parent()).hide();

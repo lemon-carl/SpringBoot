@@ -16,7 +16,7 @@
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="/admin/page.do" class="navbar-brand">
+            <a href="/signin.jsp" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
                     管理员控制台
@@ -29,18 +29,18 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <span class="user-info">
                             <small>欢迎,</small>
-                            Admin
+                            <%-- Admin--%>${user.username}
                         </span>
-                        <i class="ace-icon fa fa-caret-down"></i>
+                       <%-- <i class="ace-icon fa fa-caret-down"></i>--%>
                     </a>
-                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
+                   <%-- <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">--%>
+                      <%--<li>
                             <a href="#"> <i class="ace-icon fa fa-cog"></i>
                                 设置
                             </a>
-                        </li>
+                        </li>--%>
                         <li>
-                            <a href="profile.html"> <i class="ace-icon fa fa-user"></i>
+                            <a href="http://www.baidu.com/"> <i class="ace-icon fa fa-user"></i>
                                 个人资料
                             </a>
                         </li>
@@ -51,7 +51,7 @@
                                 注销
                             </a>
                         </li>
-                    </ul>
+                   <%-- </ul>--%>
                 </li>
             </ul>
         </div>

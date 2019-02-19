@@ -45,11 +45,6 @@ public class SysRoleServiceImpl implements SysRoleService {
   @Resource private SysLogService sysLogService;
 
   @Override
-  public List<SysRole> getAll() {
-    return sysRoleMapper.getAll();
-  }
-
-  @Override
   public void save(RoleParam param) {
     BeanValidator.check(param);
     if (checkExist(param.getName(), param.getId())) {
@@ -65,6 +60,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     role.setOperator(RequestHolder.getCurrentUser().getUsername());
     role.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
     role.setOperateTime(new Date());
+
     sysRoleMapper.insertSelective(role);
     sysLogService.saveRoleLog(null, role);
   }
@@ -96,6 +92,11 @@ public class SysRoleServiceImpl implements SysRoleService {
 
   private boolean checkExist(String name, Integer id) {
     return sysRoleMapper.countByName(name, id) > 0;
+  }
+
+  @Override
+  public List<SysRole> getAll() {
+    return sysRoleMapper.getAll();
   }
 
   @Override

@@ -115,7 +115,7 @@ public class SysCoreServiceImpl implements SysCoreService {
       SysUser sysUser = RequestHolder.getCurrentUser();
       if (sysUser.getMail().contains("admin")) {
           //TODO
-          //return true;
+          return true;
       }
       return false;
   }
