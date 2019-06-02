@@ -18,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MySpringBootApplicationTests {
@@ -29,7 +31,7 @@ public class MySpringBootApplicationTests {
     private AyUserService ayUserService;
 
 	/**
-	 * MySql 集成 Spring Boot 测试
+	 * 第二章、MySql 集成 Spring Boot 测试
 	 */
 	@Test
 	public void mySqlTest(){
@@ -44,6 +46,9 @@ public class MySpringBootApplicationTests {
 				return user;
 			}
 		});
+    System.out.println("-------");
+		assertNotNull(userList);
+
 		System.out.println("查询成功");
 		for (AyUser user : userList) {
 			System.out.println("[id]:" + user.getId() + ";[name]:" + user.getName());
@@ -52,46 +57,59 @@ public class MySpringBootApplicationTests {
 	}
 
     /**
-     * 集成测试，增删改查，分页，，，
+     * 第三章、集成测试，增删改查，分页，，，
      */
-  @Test
-  public void testRepository() {
-    // 查询所有数据
-    List<AyUser> userList = ayUserService.findAll();
-    System.out.println("findAll() :" + userList.size());
+      @Test
+      public void testRepository() {
+        // 查询所有数据
+        List<AyUser> userList = ayUserService.findAll();
+        System.out.println("findAll() :" + userList.size());
 
-    // 通过name查询数据
-    List<AyUser> userList2 = ayUserService.findByName("Carl");
-    System.out.println("findByName() :" + userList2.size());
-    Assert.isTrue(userList2.get(0).getName().equals("Carl"), "data error!");
+        // 通过name查询数据
+        List<AyUser> userList2 = ayUserService.findByName("Carl");
+        System.out.println("findByName() :" + userList2.size());
+        Assert.isTrue(userList2.get(0).getName().equals("Carl"), "data error!");
 
-    // 通过name模糊查询
-      List<AyUser> userList3 = ayUserService.findByNameLike("%o%");
-    System.out.println("findByNameLike() : " + userList3.size());
-    Assert.isTrue(userList3.get(0).getName().equals("Tom"),"data error!");
+        // 通过name模糊查询
+          List<AyUser> userList3 = ayUserService.findByNameLike("%o%");
+        System.out.println("findByNameLike() : " + userList3.size());
+        Assert.isTrue(userList3.get(0).getName().equals("Tom"),"data error!");
 
-    // 通过id列表查询
-      List<String> ids = Lists.newArrayList();
-      ids.add("1");
-      ids.add("2");
-      ids.add("3");
-      List<AyUser> userList4 = ayUserService.findByIdIn(ids);
-    System.out.println("findByIdIn() : " + userList4.size());
+        // 通过id列表查询
+          List<String> ids = Lists.newArrayList();
+          ids.add("1");
+          ids.add("2");
+          ids.add("3");
+          List<AyUser> userList4 = ayUserService.findByIdIn(ids);
+        System.out.println("findByIdIn() : " + userList4.size());
 
-      // 分页查询
-      PageRequest pageRequest = new PageRequest(0,5);
-      Page<AyUser> page = ayUserService.findAll(pageRequest);
-    System.out.println("page findAll() : " + page.getTotalPages() +"/" + page.getSize());
+          // 分页查询
+          PageRequest pageRequest = new PageRequest(0,5);
+          Page<AyUser> page = ayUserService.findAll(pageRequest);
+        System.out.println("page findAll() : " + page.getTotalPages() +"/" + page.getSize());
 
-    // 新增数据
-      AyUser ayUser = new AyUser();
-      ayUser.setId("9");
-      ayUser.setName("liming");
-      ayUser.setPassword("xiaoming");
-      ayUserService.save(ayUser);
+        // 新增数据
+          AyUser ayUser = new AyUser();
+          ayUser.setId("9");
+          ayUser.setName("liming");
+          ayUser.setPassword("xiaoming");
+          ayUserService.save(ayUser);
 
-    // 删除数据
-    ayUserService.delete("8");
+        // 删除数据
+        ayUserService.delete("8");
 
-  }
+      }
+
+    /**
+     * 五、springboot事务支持
+     */
+    @Test
+    public void testTransaction(){
+          AyUser ayUser = new AyUser();
+          ayUser.setId("10");
+          ayUser.setName("阿敏");
+        ayUser.setPassword("admin");
+        ayUserService.save(ayUser);
+    }
+
 }

@@ -2,6 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.model.AyUser;
 import com.example.demo.service.AyUserService;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/ayUser")
-public class AyUserController {
+public class AyUserController{
 
     @Resource
     private AyUserService ayUserService;
@@ -29,4 +35,5 @@ public class AyUserController {
 
         return "ayUser";
     }
+
 }

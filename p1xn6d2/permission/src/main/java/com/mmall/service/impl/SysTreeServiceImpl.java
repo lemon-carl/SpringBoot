@@ -116,8 +116,7 @@ public class SysTreeServiceImpl implements SysTreeService {
    * @param level 当前的level
    * @param levelDeptMap map所有的
    */
-  private void transformDeptTree(
-      List<DeptLevelDto> deptLevelList, String level, Multimap<String, DeptLevelDto> levelDeptMap) {
+  private void transformDeptTree(List<DeptLevelDto> deptLevelList, String level, Multimap<String, DeptLevelDto> levelDeptMap) {
 
     // 遍历当前层级数据，获取当前节点的下一层节点
     for (int i = 0; i < deptLevelList.size(); i++) {
@@ -179,10 +178,7 @@ public class SysTreeServiceImpl implements SysTreeService {
     return rootList;
   }
 
-  public void transformAclModuleTree(
-      List<AclModuleLevelDto> dtoList,
-      String level,
-      Multimap<String, AclModuleLevelDto> levelAclModuleMap) {
+  public void transformAclModuleTree(List<AclModuleLevelDto> dtoList, String level, Multimap<String, AclModuleLevelDto> levelAclModuleMap) {
     // 遍历当前层级数据，获取当前节点的下一层节点
     for (int i = 0; i < dtoList.size(); i++) {
       // 遍历该层的每个元素
@@ -221,6 +217,7 @@ public class SysTreeServiceImpl implements SysTreeService {
     Set<Integer> roleAclIdSet =
         roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
 
+    //TODO
     // 取出所以权限点
     List<SysAcl> allAclList = sysAclMapper.getAll();
     for (SysAcl acl : allAclList) {

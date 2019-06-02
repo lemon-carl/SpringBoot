@@ -6,6 +6,7 @@ import com.example.demo.service.AyUserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -18,10 +19,12 @@ import java.util.Optional;
  * @Date: 2018/9/17 16:04
  * @Version 1.0
  */
+//注解在类上
+@Transactional
 @Service
 public class AyUserServiceImpl implements AyUserService{
 
-    @Resource
+    @Resource(name="ayUserRepository")
     private AyUserRepository ayUserRepository;
 
     @Override
@@ -34,10 +37,19 @@ public class AyUserServiceImpl implements AyUserService{
         return ayUserRepository.findAll();
     }
 
-    @Override
-    public AyUser save(AyUser ayUser) {
-        return ayUserRepository.save(ayUser);
-    }
+  // 注解在方法上
+  @Transactional
+  @Override
+  public AyUser save(AyUser ayUser) {
+
+    // return ayUserRepository.save(ayUser);
+
+    // 出现空指针异常
+    AyUser saveUser = ayUserRepository.save(ayUser);
+    String error = null;
+    error.split("/");
+    return saveUser;
+  }
 
     @Override
     public void delete(String id) {
