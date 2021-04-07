@@ -32,7 +32,3 @@ build/
 
 ### VS Code ###
 .vscode/
-yeb-server/src/main/java/com/lemon/server/mapper/
-yeb-server/src/main/java/com/lemon/server/pojo/
-yeb-server/src/main/java/com/lemon/server/service/
-yeb-server/src/test/
