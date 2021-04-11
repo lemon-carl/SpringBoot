@@ -7,8 +7,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * <p>
@@ -22,7 +25,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_admin")
 @ApiModel(value="Admin对象", description="")
-public class Admin implements Serializable {
+public class Admin implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,6 +45,7 @@ public class Admin implements Serializable {
     @ApiModelProperty(value = "联系地址")
     private String address;
 
+    @ApiModelProperty(value = "是否启用")
     private Boolean enabled;
 
     @ApiModelProperty(value = "用户名")
@@ -50,9 +54,35 @@ public class Admin implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
+    @ApiModelProperty(value = "用户头像")
     private String userface;
 
+    @ApiModelProperty(value = "备注")
     private String remark;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }
