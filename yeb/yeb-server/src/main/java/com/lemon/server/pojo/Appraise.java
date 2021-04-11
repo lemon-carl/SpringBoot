@@ -27,9 +27,11 @@ public class Appraise implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "员工id")
     private Integer eid;
 
     @ApiModelProperty(value = "考评日期")

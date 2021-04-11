@@ -77,7 +77,7 @@ public class JwtTokenUtil {
     }
 
     /**
-     * 刷新token
+     * 刷新token，先根据token 获取 荷载，设置新的时间
      * @param token
      * @return
      */
