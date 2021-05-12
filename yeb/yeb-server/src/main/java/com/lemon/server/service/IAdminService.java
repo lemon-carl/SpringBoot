@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
- *  服务类
+ *  登录业务
  * </p>
  *
  * @author lemon

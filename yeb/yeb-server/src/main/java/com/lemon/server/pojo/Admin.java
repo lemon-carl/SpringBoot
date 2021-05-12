@@ -55,7 +55,7 @@ public class Admin implements Serializable, UserDetails {
     private String password;
 
     @ApiModelProperty(value = "用户头像")
-    private String userface;
+    private String userFace;
 
     @ApiModelProperty(value = "备注")
     private String remark;

@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lemon.server.config.security.JwtTokenUtil;
+import com.lemon.server.utils.JwtTokenUtil;
 import com.lemon.server.mapper.AdminMapper;
 import com.lemon.server.pojo.Admin;
 import com.lemon.server.pojo.common.RespBean;
@@ -14,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.http.SecurityHeaders;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,6 @@ import java.util.Map;
  */
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
-
     @Autowired
     private AdminMapper adminMapper;
     @Autowired
@@ -43,15 +41,6 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
-
-    /**
-     * 登录之后返户token
-     *
-     * @param username 用户名
-     * @param password 密码
-     * @param request  请求
-     * @return
-     */
     @Override
     public RespBean login(String username, String password, HttpServletRequest request) {
         // 登录
@@ -70,18 +59,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         // 生成token
         String token = jwtTokenUtil.generateToken(userDetails);
-        Map<String, String> tokenMap = new HashMap<>();
+        Map<String, String> tokenMap = new HashMap<>(16);
         tokenMap.put("token", token);
-        tokenMap.put("tokenHaded", tokenHead);
+        tokenMap.put("tokenHead", tokenHead);
         return RespBean.success("登录成功", tokenMap);
     }
 
-    /**
-     * 根据用户名获取用户
-     *
-     * @param username
-     * @return
-     */
     @Override
     public Admin getAdminByUserName(String username) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<Admin>().eq("username", username).eq("enabled", true);

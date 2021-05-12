@@ -92,7 +92,7 @@ public class Employee implements Serializable {
     private String workState;
 
     @ApiModelProperty(value = "工号")
-    private String workID;
+    private String workId;
 
     @ApiModelProperty(value = "合同期限")
     private Double contractTerm;

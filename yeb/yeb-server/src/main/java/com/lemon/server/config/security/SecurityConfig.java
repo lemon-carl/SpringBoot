@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     @Autowired
-    private RestAuthorizationationEntryPoint restAuthorizationationEntryPoint;
+    private RestAuthorizationEntryPoint restAuthorizationEntryPoint;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 添加自定义未授权和未登录结果返回
         http.exceptionHandling()
                 .accessDeniedHandler(restfulAccessDeniedHandler)
-                .authenticationEntryPoint(restAuthorizationationEntryPoint);
+                .authenticationEntryPoint(restAuthorizationEntryPoint);
     }
 
     @Override

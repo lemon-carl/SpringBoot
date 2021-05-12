@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  * @Date : 2021/4/11 20:58
  */
 @Component
-public class RestAuthorizationationEntryPoint implements AuthenticationEntryPoint {
+public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
 
 
     @Override
@@ -27,7 +27,7 @@ public class RestAuthorizationationEntryPoint implements AuthenticationEntryPoin
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        RespBean bean = RespBean.error("尚未登录,请登录！");
+        RespBean bean = RespBean.error("权限不足,请联系管理员！");
         bean.setCode(401);
         out.write(new ObjectMapper().writeValueAsString(bean));
         out.flush();

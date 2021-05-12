@@ -1,9 +1,10 @@
-package com.lemon.server.config.security;
+package com.lemon.server.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.Map;
  * @Version 1.0
  * @Desc :    JwtToken 工具类
  */
+@Configuration
 public class JwtTokenUtil {
 
     public static final String CLAIM_KEY_USERNAME = "sub";
@@ -32,7 +34,7 @@ public class JwtTokenUtil {
      * @return
      */
     public String generateToken(UserDetails userDetails){
-        Map<String, Object> claims = new HashMap<>();
+        Map<String, Object> claims = new HashMap<>(16);
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
