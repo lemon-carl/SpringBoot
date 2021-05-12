@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 使用jwt 不需要 csrf
@@ -44,16 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                // 允许登录访问
                 .authorizeRequests()
-                .antMatchers("/login", "logout")
-                .permitAll()
-                // 除了上面，所有请求都要认证
+                // 允许登录访问
+                // .antMatchers("/login", "logout")
+                // .permitAll()
+                // 所有请求都要认证
                 .anyRequest()
                 .authenticated()
                 .and()
+                // 禁用缓存 缓存类也用不到
                 .headers()
-                // 缓存类也用不到
                 .cacheControl();
 
         // 添加 jwt 登录授权过滤器
@@ -74,6 +77,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
             return null;
         };
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/login", "/logout",
+                "/css/**", "/js/**", "/index.html",
+                "favicon.ico", "/doc.html", "/webjars/**",
+                "/swagger-resources/**", "/v2/api-docs/**");
     }
 
     @Bean
