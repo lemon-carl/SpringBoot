@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/login", "/logout",
                 "/css/**", "/js/**", "/index.html",
                 "favicon.ico", "/doc.html", "/webjars/**",
-                "/swagger-resources/**", "/v2/api-docs/**");
+                "/swagger-resources/**", "/v2/api-docs/**" , "/captcha");
     }
 
     @Bean
