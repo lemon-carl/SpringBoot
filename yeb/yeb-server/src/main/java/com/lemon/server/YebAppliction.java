@@ -3,6 +3,7 @@ package com.lemon.server;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 
 /**
  * @Date : 2021/4/4 0:46
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version 1.0
  * @Desc : 
  */
-@SpringBootApplication
+@SpringBootApplication( exclude = { RedisRepositoriesAutoConfiguration.class })
 @MapperScan("com.lemon.server.mapper")
 public class YebAppliction {
 

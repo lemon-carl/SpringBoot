@@ -28,7 +28,7 @@ public class AdminRole implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private Integer hrid;
+    private Integer adminId;
 
     private Integer rid;
 

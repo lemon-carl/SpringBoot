@@ -24,6 +24,23 @@ spring:
       # 测试连接是否可用的查询语句
       connection-test-query: SELECT 1
 
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 2
+    password: admin
+    timeout: 10000ms
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 1024
+        # 最大连接阻塞等待时间 默认 -1
+        max-wait: 10000ms
+        # 最大空闲
+        max-idle: 200
+        # 最小空闲
+        min-idle: 5
+
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   # 配置Mybatis数据返回类型别名(默认别名是类名)
