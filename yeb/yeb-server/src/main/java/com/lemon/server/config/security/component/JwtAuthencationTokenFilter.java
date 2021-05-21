@@ -1,4 +1,4 @@
-package com.lemon.server.config.security;
+package com.lemon.server.config.security.component;
 
 import com.lemon.server.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;

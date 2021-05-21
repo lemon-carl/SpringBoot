@@ -1,4 +1,4 @@
-package com.lemon.server.config.security;
+package com.lemon.server.config.security.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lemon.server.pojo.common.RespBean;

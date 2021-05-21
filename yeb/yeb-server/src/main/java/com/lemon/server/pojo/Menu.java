@@ -31,9 +31,9 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "菜单id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    @ApiModelProperty(value = "菜单id")
+    @ApiModelProperty(value = "菜单url")
     private String url;
-    @ApiModelProperty(value = "菜单id")
+    @ApiModelProperty(value = "菜单path")
     private String path;
     @ApiModelProperty(value = "组件")
     private String component;
@@ -53,5 +53,10 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "子菜单")
     @TableField(exist = false)
     private List<Menu> children;
+
+    @ApiModelProperty(value = "角色列表")
+    @TableField(exist = false)
+    private List<Role> roles;
+
 
 }

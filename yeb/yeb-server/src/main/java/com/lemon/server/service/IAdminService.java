@@ -2,9 +2,11 @@ package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lemon.server.pojo.Admin;
+import com.lemon.server.pojo.Role;
 import com.lemon.server.pojo.common.RespBean;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -34,4 +36,11 @@ public interface IAdminService extends IService<Admin> {
      * @return
      */
     Admin getAdminByUserName(String username);
+
+    /**
+     * 根据用户Id查询角色列表
+     * @param adminId
+     * @return
+     */
+    List<Role> getRoles(Integer adminId);
 }

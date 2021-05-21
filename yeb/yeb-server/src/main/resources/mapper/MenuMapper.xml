@@ -27,10 +27,26 @@
             <result column="enabled2" property="enabled"/>
         </collection>
     </resultMap>
+    <resultMap id="MenusWithRole" type="com.lemon.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.lemon.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
 
     <select id="selectMenusByAdminId" resultMap="Menus">
          SELECT DISTINCT
-            m1.*,
+            m1.id,
+            m1.url,
+            m1.path,
+            m1.component,
+            m1.`name`,
+            m1.iconCls,
+            m1.keepAlive,
+            m1.requireAuth,
+            m1.parentId,
+            m1.enabled,
             m2.id AS id2,
             m2.url AS url2,
             m2.path AS path2,
@@ -52,5 +68,32 @@
             AND mr.rid = ar.rid
             AND ar.adminId = #{id}
             AND m2.enabled = TRUE
+         ORDER BY m2.id
+    </select>
+
+    <select id="getMenusWithRole" resultMap="MenusWithRole">
+        SELECT
+            m.id,
+            m.url,
+            m.path,
+            m.component,
+            m.`name`,
+            m.iconCls,
+            m.keepAlive,
+            m.requireAuth,
+            m.parentId,
+            m.enabled,
+            r.id AS rid,
+            r.`name` AS rname,
+            r.nameZh AS rnameZh
+        FROM
+            t_menu m,
+            t_menu_role mr,
+            t_role r
+        WHERE
+            m.id = mr.mid
+        AND
+            r.id = mr.rid
+        ORDER BY m.id
     </select>
 </mapper>
