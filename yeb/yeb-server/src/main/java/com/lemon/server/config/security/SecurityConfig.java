@@ -1,7 +1,7 @@
 package com.lemon.server.config.security;
 
 import com.lemon.server.config.security.component.*;
-import com.lemon.server.pojo.Admin;
+import com.lemon.server.model.Admin;
 import com.lemon.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,14 +1,12 @@
 package com.lemon.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lemon.server.pojo.Role;
+import com.lemon.server.model.Role;
 
 import java.util.List;
 
 /**
- * <p>
- *  Mapper 接口
- * </p>
+ * 角色 Mapper 接口
  *
  * @author lemon
  * @since 2021-04-07

@@ -1,8 +1,7 @@
 package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.server.pojo.Menu;
-import org.springframework.stereotype.Service;
+import com.lemon.server.model.Menu;
 
 import java.util.List;
 

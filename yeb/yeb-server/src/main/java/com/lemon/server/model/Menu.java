@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -13,9 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
+ * 菜单模型
  *
  * @author lemon
  * @since 2021-04-07

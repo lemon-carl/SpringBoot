@@ -42,9 +42,10 @@ spring:
         min-idle: 5
 
 mybatis-plus:
+  #  mapper-locations: mappers/*.xml
   mapper-locations: classpath*:/mapper/*Mapper.xml
   # 配置Mybatis数据返回类型别名(默认别名是类名)
-  type-aliases-package: com.lemon.server.pojo
+  type-aliases-package: com.lemon.server.model
   configuration:
     # 自动驼峰命名
     map-underscore-to-camel-case: false

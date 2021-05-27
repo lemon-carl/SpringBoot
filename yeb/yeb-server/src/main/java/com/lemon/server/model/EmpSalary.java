@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

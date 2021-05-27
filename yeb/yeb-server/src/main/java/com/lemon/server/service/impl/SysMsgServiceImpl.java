@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.SysMsgMapper;
-import com.lemon.server.pojo.SysMsg;
+import com.lemon.server.model.SysMsg;
 import com.lemon.server.service.ISysMsgService;
 import org.springframework.stereotype.Service;
 

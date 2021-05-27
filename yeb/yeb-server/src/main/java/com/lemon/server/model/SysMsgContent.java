@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,16 +20,20 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_nation")
-@ApiModel(value="Nation对象", description="")
-public class Nation implements Serializable {
+@TableName("t_sys_msg_content")
+@ApiModel(value="SysMsgContent对象", description="")
+public class SysMsgContent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String name;
+    private String title;
+
+    private String message;
+
+    private LocalDateTime createDate;
 
 
 }

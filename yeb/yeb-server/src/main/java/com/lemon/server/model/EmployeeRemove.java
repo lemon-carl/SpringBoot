@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -20,21 +21,30 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_role")
-@ApiModel(value="Role对象", description="")
-public class Role implements Serializable {
+@TableName("t_employee_remove")
+@ApiModel(value="EmployeeRemove对象", description="")
+public class EmployeeRemove implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "角色id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "角色编码名")
-    private String name;
+    private Integer eid;
 
-    @ApiModelProperty(value = "角色名称")
-    private String nameZh;
+    @ApiModelProperty(value = "调动后部门")
+    private Integer afterDepId;
+
+    @ApiModelProperty(value = "调动后职位")
+    private Integer afterJobId;
+
+    @ApiModelProperty(value = "调动日期")
+    private LocalDate removeDate;
+
+    @ApiModelProperty(value = "调动原因")
+    private String reason;
+
+    private String remark;
 
 
 }

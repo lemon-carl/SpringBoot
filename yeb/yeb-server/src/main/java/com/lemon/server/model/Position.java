@@ -1,46 +1,43 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
+ * 职位模型
  *
  * @author lemon
  * @since 2021-04-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_employee_train")
-@ApiModel(value="EmployeeTrain对象", description="")
-public class EmployeeTrain implements Serializable {
+@TableName("t_position")
+@ApiModel(value="Position对象", description="")
+public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "员工编号")
-    private Integer eid;
+    @ApiModelProperty(value = "职位")
+    private String name;
 
-    @ApiModelProperty(value = "培训日期")
-    private LocalDate trainDate;
+    @ApiModelProperty(value = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private LocalDateTime createDate;
 
-    @ApiModelProperty(value = "培训内容")
-    private String trainContent;
-
-    @ApiModelProperty(value = "备注")
-    private String remark;
+    @ApiModelProperty(value = "是否启用")
+    private Boolean enabled;
 
 
 }

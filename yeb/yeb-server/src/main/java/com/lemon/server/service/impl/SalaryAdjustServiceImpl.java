@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.SalaryAdjustMapper;
-import com.lemon.server.pojo.SalaryAdjust;
+import com.lemon.server.model.SalaryAdjust;
 import com.lemon.server.service.ISalaryAdjustService;
 import org.springframework.stereotype.Service;
 

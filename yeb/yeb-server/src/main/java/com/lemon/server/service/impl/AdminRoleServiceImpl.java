@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.AdminRoleMapper;
-import com.lemon.server.pojo.AdminRole;
+import com.lemon.server.model.AdminRole;
 import com.lemon.server.service.IAdminRoleService;
 import org.springframework.stereotype.Service;
 

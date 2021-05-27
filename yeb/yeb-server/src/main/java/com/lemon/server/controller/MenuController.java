@@ -1,7 +1,7 @@
 package com.lemon.server.controller;
 
 
-import com.lemon.server.pojo.Menu;
+import com.lemon.server.model.Menu;
 import com.lemon.server.service.IMenuService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
  * @since 2021-04-07
  */
 @RestController
-@RequestMapping("/system/cfg")
+@RequestMapping("/system/config")
 public class MenuController {
     @Autowired
     private IMenuService menuService;

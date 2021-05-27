@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.EmpSalaryMapper;
-import com.lemon.server.pojo.EmpSalary;
+import com.lemon.server.model.EmpSalary;
 import com.lemon.server.service.IEmpSalaryService;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.server.pojo.Admin;
-import com.lemon.server.pojo.Role;
+import com.lemon.server.model.Admin;
+import com.lemon.server.model.Role;
 import com.lemon.server.pojo.common.RespBean;
 
 import javax.servlet.http.HttpServletRequest;

@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.EmployeeTrainMapper;
-import com.lemon.server.pojo.EmployeeTrain;
+import com.lemon.server.model.EmployeeTrain;
 import com.lemon.server.service.IEmployeeTrainService;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lemon.server.mapper.MenuMapper">
-    <resultMap id="BaseResultMap" type="com.lemon.server.pojo.Menu">
+    <resultMap id="BaseResultMap" type="com.lemon.server.model.Menu">
         <id column="id" property="id"/>
         <result column="url" property="url"/>
         <result column="path" property="path"/>
@@ -13,8 +13,8 @@
         <result column="parentId" property="parentId"/>
         <result column="enabled" property="enabled"/>
     </resultMap>
-    <resultMap id="Menus" type="com.lemon.server.pojo.Menu" extends="BaseResultMap">
-        <collection property="children" ofType="com.lemon.server.pojo.Menu">
+    <resultMap id="Menus" type="com.lemon.server.model.Menu" extends="BaseResultMap">
+        <collection property="children" ofType="com.lemon.server.model.Menu">
             <id column="id2" property="id"/>
             <result column="url2" property="url"/>
             <result column="path2" property="path"/>
@@ -27,8 +27,8 @@
             <result column="enabled2" property="enabled"/>
         </collection>
     </resultMap>
-    <resultMap id="MenusWithRole" type="com.lemon.server.pojo.Menu" extends="BaseResultMap">
-        <collection property="roles" ofType="com.lemon.server.pojo.Role">
+    <resultMap id="MenusWithRole" type="com.lemon.server.model.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.lemon.server.model.Role">
             <id column="rid" property="id"/>
             <result column="rname" property="name"/>
             <result column="rnameZh" property="nameZh"/>

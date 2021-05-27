@@ -1,7 +1,7 @@
 package com.lemon.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lemon.server.pojo.Appraise;
+import com.lemon.server.model.Appraise;
 
 /**
  * <p>

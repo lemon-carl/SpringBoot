@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.EmployeeRemoveMapper;
-import com.lemon.server.pojo.EmployeeRemove;
+import com.lemon.server.model.EmployeeRemove;
 import com.lemon.server.service.IEmployeeRemoveService;
 import org.springframework.stereotype.Service;
 

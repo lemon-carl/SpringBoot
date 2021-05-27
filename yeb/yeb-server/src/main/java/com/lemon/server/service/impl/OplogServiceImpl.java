@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.OplogMapper;
-import com.lemon.server.pojo.Oplog;
+import com.lemon.server.model.Oplog;
 import com.lemon.server.service.IOplogService;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.server.pojo.Department;
+import com.lemon.server.model.Department;
 
 /**
  * <p>

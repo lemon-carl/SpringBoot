@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -21,31 +21,23 @@ import java.time.LocalDate;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_salary_adjust")
-@ApiModel(value="SalaryAdjust对象", description="")
-public class SalaryAdjust implements Serializable {
+@TableName("t_oplog")
+@ApiModel(value="Oplog对象", description="")
+public class Oplog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private Integer eid;
+    @ApiModelProperty(value = "添加日期")
+    private LocalDate addDate;
 
-    @ApiModelProperty(value = "调薪日期")
-    private LocalDate asDate;
+    @ApiModelProperty(value = "操作内容")
+    private String operate;
 
-    @ApiModelProperty(value = "调前薪资")
-    private Integer beforeSalary;
-
-    @ApiModelProperty(value = "调后薪资")
-    private Integer afterSalary;
-
-    @ApiModelProperty(value = "调薪原因")
-    private String reason;
-
-    @ApiModelProperty(value = "备注")
-    private String remark;
+    @ApiModelProperty(value = "操作员ID")
+    private Integer hrid;
 
 
 }

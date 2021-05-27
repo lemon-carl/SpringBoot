@@ -1,7 +1,7 @@
 package com.lemon.server.config.security.component;
 
-import com.lemon.server.pojo.Menu;
-import com.lemon.server.pojo.Role;
+import com.lemon.server.model.Menu;
+import com.lemon.server.model.Role;
 import com.lemon.server.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;

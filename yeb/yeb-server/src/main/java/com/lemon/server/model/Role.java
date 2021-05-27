@@ -1,14 +1,14 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,20 +20,21 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_sys_msg_content")
-@ApiModel(value="SysMsgContent对象", description="")
-public class SysMsgContent implements Serializable {
+@TableName("t_role")
+@ApiModel(value="Role对象", description="")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "角色id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String title;
+    @ApiModelProperty(value = "角色编码名")
+    private String name;
 
-    private String message;
-
-    private LocalDateTime createDate;
+    @ApiModelProperty(value = "角色名称")
+    private String nameZh;
 
 
 }

@@ -1,15 +1,13 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -21,23 +19,16 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_joblevel")
-@ApiModel(value="Joblevel对象", description="")
-public class Joblevel implements Serializable {
+@TableName("t_politics_status")
+@ApiModel(value="PoliticsStatus对象", description="")
+public class PoliticsStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "职称名称")
     private String name;
-
-    private String titleLevel;
-
-    private LocalDateTime createDate;
-
-    private Boolean enabled;
 
 
 }

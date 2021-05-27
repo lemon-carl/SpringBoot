@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.RoleMapper;
-import com.lemon.server.pojo.Role;
+import com.lemon.server.model.Role;
 import com.lemon.server.service.IRoleService;
 import org.springframework.stereotype.Service;
 

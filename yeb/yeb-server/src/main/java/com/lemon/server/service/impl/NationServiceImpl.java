@@ -2,7 +2,7 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.NationMapper;
-import com.lemon.server.pojo.Nation;
+import com.lemon.server.model.Nation;
 import com.lemon.server.service.INationService;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.lemon.server.pojo;
+package com.lemon.server.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -21,27 +21,29 @@ import java.time.LocalDate;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_appraise")
-@ApiModel(value="Appraise对象", description="")
-public class Appraise implements Serializable {
+@TableName("t_employee_ec")
+@ApiModel(value="EmployeeEc对象", description="")
+public class EmployeeEc implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "员工id")
+    @ApiModelProperty(value = "员工编号")
     private Integer eid;
 
-    @ApiModelProperty(value = "考评日期")
-    private LocalDate appDate;
+    @ApiModelProperty(value = "奖罚日期")
+    private LocalDate ecDate;
 
-    @ApiModelProperty(value = "考评结果")
-    private String appResult;
+    @ApiModelProperty(value = "奖罚原因")
+    private String ecReason;
 
-    @ApiModelProperty(value = "考评内容")
-    private String appContent;
+    @ApiModelProperty(value = "奖罚分")
+    private Integer ecPoint;
+
+    @ApiModelProperty(value = "奖罚类别，0：奖，1：罚")
+    private Integer ecType;
 
     @ApiModelProperty(value = "备注")
     private String remark;

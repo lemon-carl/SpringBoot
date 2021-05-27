@@ -1,6 +1,6 @@
 package com.lemon.server.controller;
 
-import com.lemon.server.pojo.Admin;
+import com.lemon.server.model.Admin;
 import com.lemon.server.pojo.common.RespBean;
 import com.lemon.server.pojo.vo.AdminLoginVO;
 import com.lemon.server.service.IAdminService;
@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 /**
+ *  登录模块
+ *
  * @author: Lemon
  * @Date : 2021/4/11 19:05
  */
