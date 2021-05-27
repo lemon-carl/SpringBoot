@@ -27,7 +27,7 @@ public class RespBean {
      * @param message
      * @return
      */
-    public static RespBean success(String message) {
+    public static RespBean ok(String message) {
         return new RespBean(200, message, null);
     }
 
@@ -38,7 +38,7 @@ public class RespBean {
      * @param obj
      * @return
      */
-    public static RespBean success(String message, Object obj) {
+    public static RespBean ok(String message, Object obj) {
         return new RespBean(200, message, obj);
     }
 

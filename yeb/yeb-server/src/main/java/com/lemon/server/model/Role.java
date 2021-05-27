@@ -11,9 +11,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
+ * 角色模型
  *
  * @author lemon
  * @since 2021-04-07
