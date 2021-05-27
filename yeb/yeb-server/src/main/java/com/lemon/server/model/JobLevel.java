@@ -21,8 +21,8 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_joblevel")
-@ApiModel(value="Joblevel对象", description="")
-public class Joblevel implements Serializable {
+@ApiModel(value = "JobLevel对象", description = "")
+public class JobLevel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
