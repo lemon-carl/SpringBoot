@@ -1,7 +1,7 @@
 package com.lemon.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lemon.server.model.Joblevel;
+import com.lemon.server.model.JobLevel;
 
 /**
  * 职称接口
@@ -9,6 +9,6 @@ import com.lemon.server.model.Joblevel;
  * @author lemon
  * @since 2021-04-07
  */
-public interface JoblevelMapper extends BaseMapper<Joblevel> {
+public interface JobLevelMapper extends BaseMapper<JobLevel> {
 
 }
