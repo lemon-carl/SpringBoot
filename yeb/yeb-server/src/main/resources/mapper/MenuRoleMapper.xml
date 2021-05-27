@@ -2,4 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lemon.server.mapper.MenuRoleMapper">
 
+    <resultMap id="BaseResultMap" type="com.lemon.server.model.MenuRole">
+        <id column="id" property="id"/>
+        <result column="mid" property="mid"/>
+        <result column="rid" property="rid"/>
+    </resultMap>
+
+
+    <insert id="insertRecord">
+        insert into t_menu_role(mid,rid) value
+        <foreach collection="mIds" item="mid" separator=",">
+            (#{mid},#{rid})
+        </foreach>
+    </insert>
 </mapper>

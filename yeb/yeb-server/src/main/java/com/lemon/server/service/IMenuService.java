@@ -2,6 +2,7 @@ package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lemon.server.model.Menu;
+import com.lemon.server.pojo.vo.MenuVO;
 
 import java.util.List;
 
@@ -24,4 +25,11 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     List<Menu> getMenusWithRole();
+
+    /**
+     * 查询所有菜单
+     *
+     * @return
+     */
+    List<MenuVO> getAllMenus();
 }

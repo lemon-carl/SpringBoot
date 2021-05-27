@@ -2,16 +2,22 @@ package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.google.common.collect.Lists;
 import com.lemon.server.mapper.MenuMapper;
 import com.lemon.server.model.Admin;
 import com.lemon.server.model.Menu;
+import com.lemon.server.pojo.vo.MenuVO;
 import com.lemon.server.service.IMenuService;
+import com.lemon.server.utils.BeanConvertUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,5 +51,39 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Override
     public List<Menu> getMenusWithRole() {
         return menuMapper.getMenusWithRole();
+    }
+
+
+    @Override
+    public List<MenuVO> getAllMenus() {
+        List<Menu> allMenus = menuMapper.getAllMenus();
+        List<MenuVO> returnList = new ArrayList<>();
+        allMenus.forEach(menu -> {
+            MenuVO menuVO = new MenuVO();
+            BeanConvertUtil.copyBeanValue(menu, menuVO);
+            // 递归菜单
+            iterationMenuVO(menu, menuVO);
+
+            returnList.add(menuVO);
+        });
+
+
+        return returnList;
+
+    }
+
+    private void iterationMenuVO(Menu menu, MenuVO menuVO) {
+        List<MenuVO> childrenList = new ArrayList<>();
+        if (null != menu.getChildren() && menu.getChildren().size() > 0) {
+            menu.getChildren().forEach(children -> {
+                MenuVO childrenVO = new MenuVO();
+                BeanConvertUtil.copyBeanValue(children, childrenVO);
+                if (null != children.getChildren() && children.getChildren().size() > 0) {
+                    iterationMenuVO(children, childrenVO);
+                }
+                childrenList.add(childrenVO);
+            });
+            menuVO.setChildren(childrenList);
+        }
     }
 }
