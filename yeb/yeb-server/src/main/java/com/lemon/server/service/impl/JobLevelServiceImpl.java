@@ -1,9 +1,9 @@
 package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lemon.server.mapper.JoblevelMapper;
-import com.lemon.server.model.Joblevel;
-import com.lemon.server.service.IJoblevelService;
+import com.lemon.server.mapper.JobLevelMapper;
+import com.lemon.server.model.JobLevel;
+import com.lemon.server.service.IJobLevelService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-04-07
  */
 @Service
-public class JoblevelServiceImpl extends ServiceImpl<JoblevelMapper, Joblevel> implements IJoblevelService {
+public class JobLevelServiceImpl extends ServiceImpl<JobLevelMapper, JobLevel> implements IJobLevelService {
 
 }

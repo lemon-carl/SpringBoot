@@ -1,7 +1,7 @@
 package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.server.model.Joblevel;
+import com.lemon.server.model.JobLevel;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.lemon.server.model.Joblevel;
  * @author lemon
  * @since 2021-04-07
  */
-public interface IJoblevelService extends IService<Joblevel> {
+public interface IJobLevelService extends IService<JobLevel> {
 
 }
