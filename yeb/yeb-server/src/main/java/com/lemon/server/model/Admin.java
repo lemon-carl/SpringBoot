@@ -6,8 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,13 +28,14 @@ import java.util.stream.Collectors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+//@Accessors(chain = true)
 @TableName("t_admin")
 @ApiModel(value="Admin对象", description="")
 public class Admin implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "hrID")
+    @ApiModelProperty(value = "id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -47,7 +51,11 @@ public class Admin implements Serializable, UserDetails {
     @ApiModelProperty(value = "联系地址")
     private String address;
 
+    /**
+     * 不会生成 getter的方法
+     */
     @ApiModelProperty(value = "是否启用")
+    @Getter(AccessLevel.NONE)
     private Boolean enabled;
 
     @ApiModelProperty(value = "用户名")
@@ -62,7 +70,7 @@ public class Admin implements Serializable, UserDetails {
     @ApiModelProperty(value = "备注")
     private String remark;
 
-    @ApiModelProperty(value = "角色")
+    @ApiModelProperty(value = "角色列表")
     @TableField(exist = false)
     private List<Role> roles;
 

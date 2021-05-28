@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lemon.server.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="com.lemon.server.model.Admin">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="telephone" property="telephone"/>
+        <result column="address" property="address"/>
+        <result column="enabled" property="enabled"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="userFace" property="userFace"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+    <resultMap id="AdminWithRole" type="com.lemon.server.model.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.lemon.server.model.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
 
+    <sql id="Base_Column_List">
+        id,`name`,phone,telephone,address,enabled,username,password,userFace,remark
+    </sql>
+
+    <select id="getAllAdmins" resultMap="AdminWithRole">
+        SELECT
+        a.id,
+        a.`name`,
+        a.phone,
+        a.telephone,
+        a.address,
+        a.enabled,
+        a.username,
+        a.`password`,
+        a.userface,
+        a.remark,
+        r.id AS rid,
+        r.`name` AS rname,
+        r.nameZh AS rnameZh
+        FROM
+        t_admin AS a
+        LEFT JOIN t_admin_role AS ar ON a.id = ar.adminId
+        LEFT JOIN t_role AS r ON r.id = ar.rid
+        WHERE
+        a.id != #{id}
+        <if test="null != keyWorks and '' != keyWorks">
+            AND a.`name` LIKE CONCAT(#{keyWorks},'%')
+        </if>
+        ORDER BY a.id
+    </select>
 </mapper>

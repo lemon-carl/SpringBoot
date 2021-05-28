@@ -36,7 +36,7 @@ public class SysMsg implements Serializable {
     private Integer type;
 
     @ApiModelProperty(value = "这条消息是给谁的")
-    private Integer hrid;
+    private Integer adminId;
 
     @ApiModelProperty(value = "0 未读 1 已读")
     private Integer state;

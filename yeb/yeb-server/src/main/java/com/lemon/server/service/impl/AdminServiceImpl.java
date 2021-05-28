@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.RoleMapper;
 import com.lemon.server.model.Role;
+import com.lemon.server.utils.AdminUtils;
 import com.lemon.server.utils.JwtTokenUtil;
 import com.lemon.server.mapper.AdminMapper;
 import com.lemon.server.model.Admin;
@@ -25,9 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>
- *  服务实现类
- * </p>
+ * 用户业务实现类
  *
  * @author lemon
  * @since 2021-04-07
@@ -85,5 +84,10 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Role> getRoles(Integer adminId) {
         return roleMapper.getRoles(adminId);
+    }
+
+    @Override
+    public List<Admin> getAllAdmins(String keyWorks) {
+        return adminMapper.getAllAdmins(AdminUtils.getCurrentAdmin().getId(), keyWorks);
     }
 }

@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * <p>
- *  登录业务
- * </p>
+ *
+ * 用户业务接口
  *
  * @author lemon
  * @since 2021-04-07
@@ -43,4 +42,12 @@ public interface IAdminService extends IService<Admin> {
      * @return
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * 查询所有操作员
+     *
+     * @param keyWorks
+     * @return
+     */
+    List<Admin> getAllAdmins(String keyWorks);
 }

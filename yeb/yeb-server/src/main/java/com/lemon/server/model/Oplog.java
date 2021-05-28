@@ -37,7 +37,7 @@ public class Oplog implements Serializable {
     private String operate;
 
     @ApiModelProperty(value = "操作员ID")
-    private Integer hrid;
+    private Integer adminId;
 
 
 }
