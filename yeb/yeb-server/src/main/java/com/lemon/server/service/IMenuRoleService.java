@@ -26,8 +26,8 @@ public interface IMenuRoleService extends IService<MenuRole> {
      * 更新角色菜单权限
      *
      * @param rid
-     * @param mids
+     * @param mIds
      * @return
      */
-    RespBean updateMenuByRoleId(Integer rid, Integer[] mids);
+    RespBean updateMenuByRoleId(Integer rid, Integer[] mIds);
 }

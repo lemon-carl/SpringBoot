@@ -9,6 +9,7 @@ import com.lemon.server.pojo.common.RespBean;
 import com.lemon.server.service.IMenuRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,15 +35,19 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
     }
 
     @Override
-    public RespBean updateMenuByRoleId(Integer rid, Integer[] mids) {
-        QueryWrapper<MenuRole> queryWrapper = new QueryWrapper();
+    @Transactional(rollbackFor = Exception.class)
+    public RespBean updateMenuByRoleId(Integer rid, Integer[] mIds) {
+        QueryWrapper<MenuRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("rid", rid);
         menuRoleMapper.delete(queryWrapper);
-        if (null == mids || mids.length == 0) {
+        if (null == mIds || mIds.length == 0) {
             return RespBean.ok("更新成功！");
         }
-        menuRoleMapper.insertRecord(rid, mids);
+        int result = menuRoleMapper.insertRecord(rid, mIds);
+        if (result == mIds.length) {
+            return RespBean.ok("更新成功！");
+        }
 
-        return null;
+        return RespBean.error("更新失败！");
     }
 }

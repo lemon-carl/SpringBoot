@@ -72,10 +72,8 @@ public class PermissController {
 
     @ApiOperation("更新角色菜单")
     @PutMapping("/")
-    public RespBean updateMenuByRoleId(Integer rid, Integer[] mids) {
-        menuRoleService.updateMenuByRoleId(rid, mids);
-
-        return RespBean.ok("更新成功！");
+    public RespBean updateMenuByRoleId(Integer rid, Integer[] mIds) {
+        return menuRoleService.updateMenuByRoleId(rid, mIds);
     }
 
 

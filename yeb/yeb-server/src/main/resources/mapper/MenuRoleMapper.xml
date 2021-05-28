@@ -10,7 +10,7 @@
 
 
     <insert id="insertRecord">
-        insert into t_menu_role(mid,rid) value
+        insert into t_menu_role(mid,rid) values
         <foreach collection="mIds" item="mid" separator=",">
             (#{mid},#{rid})
         </foreach>
