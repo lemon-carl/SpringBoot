@@ -1,5 +1,6 @@
 package com.lemon.server.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lemon.server.model.Role;
 
@@ -19,4 +20,16 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * 根据角色标识名或中文名 查询是否存在该角色
+     *
+     * @param role
+     * @return
+     */
+    default int getRoleByNameOrNameZh(Role role) {
+        QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("`name`", role.getName()).or().eq("nameZh", role.getNameZh());
+        return this.selectCount(queryWrapper);
+    }
 }

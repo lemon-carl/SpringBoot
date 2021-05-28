@@ -41,6 +41,12 @@ public class PermissController {
             role.setName(PermissionConstants.ROLE_PREV_CONSTANTS + role.getName());
         }
 
+        // todo: 待优化不能添加相同中文名称和code的 角色
+        int result = roleService.getRoleByNameOrNameZh(role);
+        if (result != 0) {
+            return RespBean.error("已存在该角色名或标识名");
+        }
+
         if (roleService.save(role)) {
             return RespBean.ok("添加成功！");
 

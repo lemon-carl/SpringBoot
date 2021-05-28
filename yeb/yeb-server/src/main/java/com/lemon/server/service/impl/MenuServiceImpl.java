@@ -3,6 +3,7 @@ package com.lemon.server.service.impl;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.lemon.server.mapper.MenuMapper;
 import com.lemon.server.model.Admin;
@@ -74,11 +75,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
     private void iterationMenuVO(Menu menu, MenuVO menuVO) {
         List<MenuVO> childrenList = new ArrayList<>();
-        if (null != menu.getChildren() && menu.getChildren().size() > 0) {
+        if (CollectionUtils.isNotEmpty(menu.getChildren()) && menu.getChildren().size() > 0) {
             menu.getChildren().forEach(children -> {
                 MenuVO childrenVO = new MenuVO();
                 BeanConvertUtil.copyBeanValue(children, childrenVO);
-                if (null != children.getChildren() && children.getChildren().size() > 0) {
+                if (CollectionUtils.isNotEmpty(children.getChildren()) && children.getChildren().size() > 0) {
                     iterationMenuVO(children, childrenVO);
                 }
                 childrenList.add(childrenVO);
