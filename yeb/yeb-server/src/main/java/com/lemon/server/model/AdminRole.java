@@ -4,15 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
+ * 用户角色模型
  *
  * @author lemon
  * @since 2021-04-07
@@ -28,8 +27,10 @@ public class AdminRole implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "用户id")
     private Integer adminId;
 
+    @ApiModelProperty(value = "角色id")
     private Integer rid;
 
 
