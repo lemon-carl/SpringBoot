@@ -47,7 +47,7 @@
         WHERE
         a.id != #{id}
         <if test="null != keyWorks and '' != keyWorks">
-            AND a.`name` LIKE CONCAT(#{keyWorks},'%')
+            AND a.`name` LIKE CONCAT('%', #{keyWorks},'%')
         </if>
         ORDER BY a.id
     </select>

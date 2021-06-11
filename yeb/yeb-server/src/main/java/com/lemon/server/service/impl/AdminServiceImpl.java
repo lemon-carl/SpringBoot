@@ -1,21 +1,22 @@
 package com.lemon.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lemon.server.mapper.AdminRoleMapper;
+import com.lemon.server.mapper.MenuMapper;
 import com.lemon.server.mapper.RoleMapper;
-import com.lemon.server.model.AdminRole;
-import com.lemon.server.model.MenuRole;
-import com.lemon.server.model.Role;
+import com.lemon.server.model.*;
 import com.lemon.server.utils.AdminUtils;
 import com.lemon.server.utils.JwtTokenUtil;
 import com.lemon.server.mapper.AdminMapper;
-import com.lemon.server.model.Admin;
 import com.lemon.server.pojo.common.RespBean;
 import com.lemon.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,8 @@ import java.util.Map;
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
     @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
     private AdminMapper adminMapper;
     @Autowired
     private UserDetailsService userDetailsService;
@@ -51,6 +54,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private RoleMapper roleMapper;
     @Autowired
     private AdminRoleMapper adminRoleMapper;
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Override
     public RespBean login(String username, String password, String code, HttpServletRequest request) {
@@ -106,6 +111,18 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
         Integer result = adminRoleMapper.updateAdminRole(adminId, rids);
         if (rids.length == result) {
+           /* ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
+            // 从redis中获取菜单数据
+            List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
+            // 如果为空，从数据库中获取
+            if (CollectionUtils.isNotEmpty(menus)) {
+
+            } else {
+                menus = menuMapper.selectMenusByAdminId(adminId);
+                // 将数据设置到redis中
+                valueOperations.set("menu_" + adminId, menus);
+            }*/
+
             return RespBean.ok("更新成功！");
         }
         return RespBean.error("更新失败！");
