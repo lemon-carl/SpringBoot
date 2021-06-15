@@ -111,17 +111,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
         Integer result = adminRoleMapper.updateAdminRole(adminId, rids);
         if (rids.length == result) {
-           /* ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
+            ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
             // 从redis中获取菜单数据
             List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
-            // 如果为空，从数据库中获取
+            // 如果不为空，则删除之前的值,从数据库中获取
             if (CollectionUtils.isNotEmpty(menus)) {
-
+                redisTemplate.delete("menu_"+ adminId);
+                menus = menuMapper.selectMenusByAdminId(adminId);
+                // 将数据设置到redis中
+                valueOperations.set("menu_" + adminId, menus);
             } else {
                 menus = menuMapper.selectMenusByAdminId(adminId);
                 // 将数据设置到redis中
                 valueOperations.set("menu_" + adminId, menus);
-            }*/
+            }
 
             return RespBean.ok("更新成功！");
         }
