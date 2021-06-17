@@ -7,6 +7,7 @@ import com.lemon.server.model.Employee;
 import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 持久层 员工 Mapper 接口
@@ -24,4 +25,12 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return
      */
     IPage<Employee> getEmployeeByPage(Page<Employee> page, @Param("employee") Employee employee, @Param("beginDateScope") LocalDate[] beginDateScope);
+
+    /**
+     * 查询员工
+     *
+     * @param id
+     * @return
+     */
+    List<Employee> getEmployee(Integer id);
 }

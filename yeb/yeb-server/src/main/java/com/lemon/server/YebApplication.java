@@ -13,9 +13,9 @@ import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoCo
  */
 @SpringBootApplication( exclude = { RedisRepositoriesAutoConfiguration.class })
 @MapperScan("com.lemon.server.mapper")
-public class YebAppliction {
+public class YebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YebAppliction.class,args);
+        SpringApplication.run(YebApplication.class, args);
     }
 }

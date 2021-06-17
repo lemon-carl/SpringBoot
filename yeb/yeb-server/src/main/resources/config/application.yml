@@ -43,7 +43,8 @@ spring:
 
 mybatis-plus:
   #  mapper-locations: mappers/*.xml
-  mapper-locations: classpath*:/mapper/*Mapper.xml
+  # mapper-locations: classpath*:/mapper/*Mapper.xml
+  mapper-locations: classpath*:/mapper/*.xml
   # 配置Mybatis数据返回类型别名(默认别名是类名)
   type-aliases-package: com.lemon.server.model
   configuration:

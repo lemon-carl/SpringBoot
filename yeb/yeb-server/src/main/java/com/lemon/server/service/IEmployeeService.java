@@ -2,9 +2,11 @@ package com.lemon.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lemon.server.model.Employee;
+import com.lemon.server.pojo.common.RespBean;
 import com.lemon.server.pojo.common.RespPageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工业务接口
@@ -23,4 +25,27 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     RespPageBean getEmployeePage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
+
+    /**
+     * 获取工号
+     *
+     * @return
+     */
+    RespBean maxWorkID();
+
+    /**
+     * 添加员工
+     *
+     * @param employee
+     * @return
+     */
+    RespBean addEmp(Employee employee);
+
+    /**
+     * 查询员工
+     *
+     * @param id
+     * @return
+     */
+    List<Employee> getEmployee(Integer id);
 }
