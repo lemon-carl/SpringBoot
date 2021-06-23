@@ -23,7 +23,7 @@
         <result column="school" property="school"/>
         <result column="beginDate" property="beginDate"/>
         <result column="workState" property="workState"/>
-        <result column="workId" property="workId"/>
+        <result column="workID" property="workId"/>
         <result column="contractTerm" property="contractTerm"/>
         <result column="conversionTime" property="conversionTime"/>
         <result column="notWorkDate" property="notWorkDate"/>
@@ -131,7 +131,7 @@
             AND e.jobLevelId = #{employee.jobLevelId}
         </if>
         <if test="null != employee.posId">
-            AND e.posId = = #{employee.posId}
+            AND e.posId = #{employee.posId}
         </if>
         <if test="null != employee.engageForm and '' != employee.engageForm">
             AND e.engageForm = #{employee.engageForm}
