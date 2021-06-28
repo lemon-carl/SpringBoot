@@ -40,6 +40,12 @@ spring:
         max-idle: 200
         # 最小空闲
         min-idle: 5
+  ## rabbitmq配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 mybatis-plus:
   #  mapper-locations: mappers/*.xml

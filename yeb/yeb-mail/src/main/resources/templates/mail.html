@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>入职欢迎邮件</title>
+</head>
+<body>
+<div style="padding-top: 50px">
+    <div style="padding-left: 50px">
+        &nbsp;&nbsp;欢迎 <span th:text="${name}"></span> 加入--柠檬--大家庭，您的入职信息如下：
+    </div>
+    <table border="1" cellspacing="0px" align="center"
+           style="width: 200px;height: 200px;font-size: xx-large;text-align:center;vertical-align:middle;">
+        <tr>
+            <td>姓名</td>
+            <td th:text="${name}"></td>
+        </tr>
+        <tr>
+            <td>职位</td>
+            <td th:text="${posName}"></td>
+        </tr>
+        <tr>
+            <td>职称</td>
+            <td th:text="${jobLevelName}"></td>
+        </tr>
+        <tr>
+            <td>部门</td>
+            <td th:text="${departmentName}"></td>
+        </tr>
+    </table>
+    <div style="padding: 50px">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;我们公司的工作宗旨是严格、创新、诚信,您的加入将为我们带来新鲜血液,带来创新的思维,以及为我们树立良好的公司形象！
+            希望在以后 的工作中我们能够齐心协力,与时俱进,团结协作!同时也祝您在本公司,工作愉快,实现自己的人生价值！</p>
+        <p>希望在未来的日子里，携手共进！</p>
+        <div style="margin-right: 0px">
+            <p style="margin-right: 30px;">lemon</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
