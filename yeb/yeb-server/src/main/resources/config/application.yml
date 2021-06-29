@@ -46,6 +46,11 @@ spring:
     port: 5672
     username: guest
     password: guest
+    # 消息确认回调
+    publisher-confirm-type: correlated
+    # 消息失败回调
+    publisher-returns: true
+
 
 mybatis-plus:
   #  mapper-locations: mappers/*.xml
