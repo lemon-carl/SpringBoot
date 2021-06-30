@@ -40,15 +40,15 @@ public class MailTask {
     @Scheduled(cron = "0/10 * * * * ?")
     public void mailTask() {
         List<MailLog> mailLogList = mailLogService.list(new QueryWrapper<MailLog>()
-                .eq("status", 0).lt("tryTime", LocalDateTime.now()));
+                .eq("status", MailConstants.DELIVEERING).lt("tryTime", LocalDateTime.now()));
         if (mailLogList == null || mailLogList.size() == 0) {
             return;
         }
         mailLogList.forEach(mailLog -> {
             // 如果重试次数超过三次，更新状态改为失败，不再重试
-            if (3 <= mailLog.getCount()) {
+            if (mailLog.getCount() >= MailConstants.MAX_TRY_COUNT) {
                 mailLogService.update(new UpdateWrapper<MailLog>()
-                        .set("status", 2).eq("msgId", mailLog.getMsgId()));
+                        .set("status", MailConstants.FAILURE).eq("msgId", mailLog.getMsgId()));
             }
 
             mailLogService.update(new UpdateWrapper<MailLog>()

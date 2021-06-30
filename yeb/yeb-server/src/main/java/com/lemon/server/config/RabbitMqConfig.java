@@ -1,6 +1,5 @@
 package com.lemon.server.config;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lemon.server.constants.MailConstants;
 import com.lemon.server.model.MailLog;
@@ -24,9 +23,9 @@ import org.springframework.context.annotation.Configuration;
  * @Date : 2021/6/29 22:12
  */
 @Configuration
-public class RabbitMQConfig {
+public class RabbitMqConfig {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQConfig.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqConfig.class);
 
     @Autowired
     private IMailLogService mailLogService;
@@ -46,7 +45,7 @@ public class RabbitMQConfig {
             String msgId = data.getId();
             if (ack) {
                 LOGGER.info("{}===============> 消息发送成功", msgId);
-                mailLogService.update(new UpdateWrapper<MailLog>().set("status", 1).eq("msgId", msgId));
+                mailLogService.update(new UpdateWrapper<MailLog>().set("status", MailConstants.SUCCESS).eq("msgId", msgId));
             } else {
                 LOGGER.error("{}==============> 消息发送失败", msgId);
             }
