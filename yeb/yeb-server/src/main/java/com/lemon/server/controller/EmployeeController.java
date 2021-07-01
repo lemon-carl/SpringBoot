@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -112,6 +113,15 @@ public class EmployeeController {
             return RespBean.ok("删除成功！");
         }
         return RespBean.error("删除失败！");
+    }
+
+    @ApiOperation("批量删除员工")
+    @DeleteMapping("/")
+    public RespBean deleteEmpByIds(Integer[] ids) {
+        if (employeeService.removeByIds(Arrays.asList(ids))) {
+            return RespBean.ok("批量删除员工成功！");
+        }
+        return RespBean.error("批量删除员工失败！");
     }
 
     @ApiOperation("导出员工数据")

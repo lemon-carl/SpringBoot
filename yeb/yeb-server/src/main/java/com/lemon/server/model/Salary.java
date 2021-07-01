@@ -3,24 +3,25 @@ package com.lemon.server.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
+ * 工资账套模型
  *
  * @author lemon
  * @since 2021-04-07
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, of = "name")
 @TableName("t_salary")
 @ApiModel(value="Salary对象", description="")
 public class Salary implements Serializable {
@@ -52,6 +53,7 @@ public class Salary implements Serializable {
     private Float pensionPer;
 
     @ApiModelProperty(value = "启用时间")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "医疗基数")
@@ -66,6 +68,7 @@ public class Salary implements Serializable {
     @ApiModelProperty(value = "公积金比率")
     private Float accumulationFundPer;
 
+    @ApiModelProperty(value = "账套名称")
     private String name;
 
 

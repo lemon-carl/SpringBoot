@@ -54,7 +54,27 @@
             <id column="posid" property="id"/>
             <result column="posname" property="name"/>
         </association>
+    </resultMap>
 
+    <resultMap id="EmployeeWithSalary" type="com.lemon.server.model.Employee" extends="BaseResultMap">
+        <association property="salary" javaType="com.lemon.server.model.Salary">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+            <result column="sbasicSalary" property="basicSalary"/>
+            <result column="sbonus" property="bonus"/>
+            <result column="slunchSalary" property="lunchSalary"/>
+            <result column="strafficSalary" property="trafficSalary"/>
+            <result column="sallSalary" property="allSalary"/>
+            <result column="spensionBase" property="pensionBase"/>
+            <result column="spensionPer" property="pensionPer"/>
+            <result column="smedicalBase" property="medicalBase"/>
+            <result column="smedicalPer" property="medicalPer"/>
+            <result column="saccumulationFundBase" property="accumulationFundBase"/>
+            <result column="saccumulationFundBase" property="accumulationFundPer"/>
+        </association>
+        <association property="department" javaType="com.lemon.server.model.Department">
+            <result column="dname" property="name"/>
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -205,5 +225,57 @@
         </if>
         ORDER BY
         e.id
+    </select>
+
+    <select id="getEmployeeWithSalary" resultMap="EmployeeWithSalary">
+                SELECT
+            e.id,
+            e.`name`,
+            e.gender,
+            e.birthday,
+            e.idCard,
+            e.wedlock,
+            e.nationId,
+            e.nativePlace,
+            e.politicId,
+            e.email,
+            e.phone,
+            e.address,
+            e.departmentId,
+            e.jobLevelId,
+            e.posId,
+            e.engageForm,
+            e.tiptopDegree,
+            e.specialty,
+            e.school,
+            e.beginDate,
+            e.workState,
+            e.workID,
+            e.contractTerm,
+            e.conversionTime,
+            e.notWorkDate,
+            e.beginContract,
+            e.endContract,
+            e.workAge,
+            d.`name` AS dname,
+            s.id AS sid,
+            s.`name` AS sname,
+            s.basicSalary AS sbasicSalary,
+            s.bonus AS sbonus,
+            s.lunchSalary AS slunchSalary,
+            s.trafficSalary AS strafficSalary,
+            s.allSalary AS sallSalary,
+            s.pensionBase AS spensionBase,
+            s.pensionPer AS spensionPer,
+            s.medicalBase AS smedicalBase,
+            s.medicalPer AS smedicalPer,
+            s.accumulationFundBase AS saccumulationFundBase,
+            s.accumulationFundPer AS saccumulationFundPer
+        FROM
+            t_employee e
+        LEFT JOIN t_salary s ON e.salaryId = s.id
+        LEFT JOIN t_department d ON e.departmentId = d.id
+        ORDER BY
+            e.id
     </select>
 </mapper>
