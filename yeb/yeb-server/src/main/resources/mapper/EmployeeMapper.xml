@@ -257,6 +257,7 @@
             e.beginContract,
             e.endContract,
             e.workAge,
+            e.salaryId,
             d.`name` AS dname,
             s.id AS sid,
             s.`name` AS sname,
