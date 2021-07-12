@@ -1,0 +1,31 @@
+package com.lemon.server.controller;
+
+import com.lemon.server.model.Admin;
+import com.lemon.server.service.IAdminService;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * 在线聊天
+ *
+ * @author: Lemon
+ * @Date : 2021/7/11 13:34
+ */
+@RestController
+@RequestMapping("/chat")
+public class ChatController {
+
+    @Autowired
+    private IAdminService adminService;
+
+    @ApiOperation("获取所有操作员(用户)")
+    @GetMapping("/admin")
+    public List<Admin> getAllAdmins(String keywords) {
+        return adminService.getAllAdmins(keywords);
+    }
+}
