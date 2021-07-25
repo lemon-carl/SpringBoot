@@ -20,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,7 +76,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }
 
         // 更新 security 登录用户对象,参数1.参数2- 密码（一般不放）,参数3，权限列表
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         // security 全局里
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         // 生成token
@@ -88,7 +90,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Override
     public Admin getAdminByUserName(String username) {
-        QueryWrapper<Admin> queryWrapper = new QueryWrapper<Admin>().eq("username", username).eq("enabled", true);
+        QueryWrapper<Admin> queryWrapper = new QueryWrapper<Admin>()
+                .eq("username", username)
+                .eq("enabled", true);
         return adminMapper.selectOne(queryWrapper);
     }
 
@@ -129,5 +133,21 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             return RespBean.ok("更新成功！");
         }
         return RespBean.error("更新失败！");
+    }
+
+    @Override
+    public RespBean updateAdminPassword(String oldPass, String pass, Integer adminId) {
+        Admin admin = adminMapper.selectById(adminId);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // 比较老密码是否与数据库加密的一致
+        if (encoder.matches(oldPass, admin.getPassword())) {
+            // 新密码加密并设置
+            admin.setPassword(encoder.encode(pass));
+            int result = adminMapper.updateById(admin);
+            if (1 == result) {
+                return RespBean.ok("更新密码成功！");
+            }
+        }
+        return RespBean.error("更新密码失败！");
     }
 }

@@ -80,6 +80,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                                 System.out.println("---------------连接上了------------------------");
                                 UsernamePasswordAuthenticationToken authenticationToken =
                                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                                // 获取 Spring security 全局上下文 设置Authentication 更新当前登录用户对象
                                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                                 accessor.setUser(authenticationToken);
                             }

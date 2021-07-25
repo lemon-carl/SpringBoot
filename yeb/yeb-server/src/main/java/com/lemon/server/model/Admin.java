@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.lemon.server.config.CustomAuthorityDeserializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
@@ -29,7 +31,7 @@ import java.util.stream.Collectors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-//@Accessors(chain = true)
+@Accessors(chain = true)
 @TableName("t_admin")
 @ApiModel(value="Admin对象", description="")
 public class Admin implements Serializable, UserDetails {
@@ -77,7 +79,8 @@ public class Admin implements Serializable, UserDetails {
 
 
     @Override
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = roles
                 .stream()
