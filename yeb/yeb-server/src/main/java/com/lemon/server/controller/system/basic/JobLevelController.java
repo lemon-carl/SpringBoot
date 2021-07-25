@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.system.basic;
 
 
 import com.lemon.server.model.JobLevel;

@@ -1,19 +1,17 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.system;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- *  前端控制器
- * </p>
+ * 操作日志管理 （系统管理）
  *
  * @author lemon
  * @since 2021-04-07
  */
 @RestController
-@RequestMapping("/emp-salary")
-public class EmpSalaryController {
+@RequestMapping("/log")
+public class OperatorLogController {
 
 }

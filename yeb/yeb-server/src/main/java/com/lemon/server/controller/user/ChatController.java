@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.user;
 
 import com.lemon.server.model.Admin;
 import com.lemon.server.service.IAdminService;

@@ -1,19 +1,18 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.emp;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- *  前端控制器
- * </p>
+ *
+ * 员工评价 (人事管理)
  *
  * @author lemon
  * @since 2021-04-07
  */
 @RestController
-@RequestMapping("/employee-ec")
-public class EmployeeEcController {
+@RequestMapping("/appraise")
+public class AppraiseController {
 
 }

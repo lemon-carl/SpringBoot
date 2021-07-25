@@ -1,19 +1,18 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.system;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- *  前端控制器
- * </p>
+ *
+ * 系统消息
  *
  * @author lemon
  * @since 2021-04-07
  */
 @RestController
-@RequestMapping("/appraise")
-public class AppraiseController {
+@RequestMapping("/sys-msg")
+public class SysMsgController {
 
 }

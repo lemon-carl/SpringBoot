@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.salary;
 
 
 import com.lemon.server.model.Salary;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 工资账套管理
+ * 工资账套管理 （薪资管理）
  *
  * @author lemon
  * @since 2021-04-07

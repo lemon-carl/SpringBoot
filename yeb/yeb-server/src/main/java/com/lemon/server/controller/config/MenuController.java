@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.config;
 
 
 import com.lemon.server.model.Menu;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 系统管理(菜单)
+ * 左侧菜单（系统管理）
  *
  * @author lemon
  * @since 2021-04-07

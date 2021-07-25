@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.user;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.ApiOperation;

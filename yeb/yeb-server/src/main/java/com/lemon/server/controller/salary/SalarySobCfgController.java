@@ -1,4 +1,4 @@
-package com.lemon.server.controller;
+package com.lemon.server.controller.salary;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lemon.server.model.Employee;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 员工账套过来
+ * 员工账套设置 （薪资管理）
  *
  * @author: Lemon
  * @Date : 2021/7/2 0:13
