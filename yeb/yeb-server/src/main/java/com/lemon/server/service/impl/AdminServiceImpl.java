@@ -154,6 +154,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Override
     public RespBean updateAdminUserFace(String url, Integer id, Authentication authentication) {
+
         Admin admin = adminMapper.selectById(id);
         admin.setUserFace(url);
         int result = adminMapper.updateById(admin);

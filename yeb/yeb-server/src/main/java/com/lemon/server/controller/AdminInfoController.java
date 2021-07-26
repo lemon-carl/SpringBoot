@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,9 +52,10 @@ public class AdminInfoController {
     }
 
     @ApiOperation("更新用户头像")
-    @PutMapping("/admin/userface")
+    @PostMapping("/admin/userface")
     public RespBean updateAdminUserFace(MultipartFile file, Integer id, Authentication authentication) {
         // todo: fastDFS Tracker服务端和 StorageServer待linux部署安装
+        System.out.println("更新用户头像......");
         String[] filePath = FastDfsUtils.upload(file);
         String url = FastDfsUtils.getTrackerUrl() + filePath[0] + "/" + filePath[1];
         return adminService.updateAdminUserFace(url, id, authentication);

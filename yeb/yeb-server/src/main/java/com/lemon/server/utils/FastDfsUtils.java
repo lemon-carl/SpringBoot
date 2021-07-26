@@ -102,12 +102,14 @@ public class FastDfsUtils {
         }
 
         logger.info("上传时间：" + (System.currentTimeMillis() - startTime) + "ms");
-
-        if (null == uploadResults) {
+        if (null == uploadResults && storageClient != null) {
             logger.error("上传失败", storageClient.getErrorCode());
         }
 
-        logger.info("上传成功,group_name: " + uploadResults[0] + ",remoteFileName: " + uploadResults[1]);
+        if (uploadResults != null) {
+            logger.info("上传成功,group_name: " + uploadResults[0] + ",remoteFileName: " + uploadResults[1]);
+        }
+
 
         return uploadResults;
     }
