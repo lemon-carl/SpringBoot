@@ -1,8 +1,10 @@
 package com.lemon.server.controller;
 
+import com.jhlabs.image.MutatableFilter;
 import com.lemon.server.model.Admin;
 import com.lemon.server.pojo.common.RespBean;
 import com.lemon.server.service.IAdminService;
+import com.lemon.server.utils.FastDfsUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -45,6 +48,14 @@ public class AdminInfoController {
         String pass = (String) info.get("pass");
         Integer adminId = (Integer) info.get("adminId");
         return adminService.updateAdminPassword(oldPass, pass, adminId);
+    }
 
+    @ApiOperation("更新用户头像")
+    @PutMapping("/admin/userface")
+    public RespBean updateAdminUserFace(MultipartFile file, Integer id, Authentication authentication) {
+        // todo: fastDFS Tracker服务端和 StorageServer待linux部署安装
+        String[] filePath = FastDfsUtils.upload(file);
+        String url = FastDfsUtils.getTrackerUrl() + filePath[0] + "/" + filePath[1];
+        return adminService.updateAdminUserFace(url, id, authentication);
     }
 }

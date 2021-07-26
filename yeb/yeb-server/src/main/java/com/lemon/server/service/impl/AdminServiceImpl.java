@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -120,7 +121,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
             // 如果不为空，则删除之前的值,从数据库中获取
             if (CollectionUtils.isNotEmpty(menus)) {
-                redisTemplate.delete("menu_"+ adminId);
+                redisTemplate.delete("menu_" + adminId);
                 menus = menuMapper.selectMenusByAdminId(adminId);
                 // 将数据设置到redis中
                 valueOperations.set("menu_" + adminId, menus);
@@ -149,5 +150,21 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             }
         }
         return RespBean.error("更新密码失败！");
+    }
+
+    @Override
+    public RespBean updateAdminUserFace(String url, Integer id, Authentication authentication) {
+        Admin admin = adminMapper.selectById(id);
+        admin.setUserFace(url);
+        int result = adminMapper.updateById(admin);
+        if (1 == result) {
+            Admin principal = (Admin) authentication.getPrincipal();
+            principal.setUserFace(url);
+            SecurityContextHolder.getContext().setAuthentication(
+                    new UsernamePasswordAuthenticationToken(admin, null, authentication.getAuthorities()));
+            RespBean.ok("更新头像成功");
+        }
+
+        return RespBean.error("更新失败");
     }
 }
